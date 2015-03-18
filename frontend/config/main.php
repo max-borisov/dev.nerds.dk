@@ -10,6 +10,7 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute' => 'article/index',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'user' => [
@@ -28,6 +29,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'urlManager' => require(__DIR__ . '/routes.php'),
     ],
     'params' => $params,
 ];
