@@ -8,11 +8,15 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    'language' => 'dk',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'defaultRoute' => 'article/index',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'view' => [
+            'title' => 'Hello'
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
