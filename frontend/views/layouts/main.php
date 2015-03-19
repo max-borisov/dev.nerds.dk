@@ -34,15 +34,17 @@ AppAsset::register($this);
         <?= $this->render('../shared/header') ?>
         <!-- header end -->
         <div class="row form-group">
-        <?= $content ?>
-        <!-- aside begin -->
-        <?= $this->render('../shared/aside-right') ?>
-        <!-- aside end -->
-    </div>
-    <span class="hor-line">&nbsp;</span>
-    <!-- footer begin -->
-    <?= $this->render('../shared/footer') ?>
-    <!-- footer end -->
+            <article class="col-sm-9">
+                <?= $content ?>
+            </article>
+            <!-- aside begin -->
+            <?= $this->render('../shared/aside-right') ?>
+            <!-- aside end -->
+        </div>
+        <span class="hor-line">&nbsp;</span>
+        <!-- footer begin -->
+        <?= $this->render('../shared/footer') ?>
+        <!-- footer end -->
     </div> <!-- /container -->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/ekko-lightbox-min.js"></script>
