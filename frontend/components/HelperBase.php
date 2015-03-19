@@ -112,4 +112,21 @@ class HelperBase extends Component
         }
         return $output;
     }
+
+    /**
+     * Make long description shorter
+     * @param $text Text to be shortened
+     * @param $maxLen max text length
+     * @return string
+     */
+    public static function makeShortText($text, $maxLen)
+    {
+        if (strlen($text) <= $maxLen) return $text;
+        return $text = substr($text, 0, $maxLen) . '...';
+    }
+
+    public static function formatArticleDate($date)
+    {
+        return date('d/m/Y', strtotime($date));
+    }
 }
