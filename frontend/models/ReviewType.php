@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use frontend\models\ActiveRecord;
 
 /**
  * This is the model class for table "review_type".
@@ -12,7 +13,7 @@ use Yii;
  * @property integer $created_at
  * @property integer $updated_at
  */
-class ReviewType extends \app\components\ActiveRecord
+class ReviewType extends ActiveRecord
 {
     const AMPLIFIER     = 1;
     const SPEAKER       = 2;

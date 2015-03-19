@@ -5,6 +5,7 @@ namespace frontend\models;
 use Yii;
 use frontend\models\ActiveRecord;
 use frontend\models\ReviewType;
+use frontend\components\HelperBase;
 
 /**
  * This is the model class for table "review".
@@ -17,18 +18,47 @@ use frontend\models\ReviewType;
  * @property string $af
  * @property string $notice
  * @property string $post
+ * @property string $post_short
  * @property string $post_date
+ * @property string $preview
  * @property integer $created_at
  * @property integer $updated_at
  */
 class Review extends ActiveRecordParser
 {
+    public $post_short = '';
+    public $preview = '';
+
+    public function init()
+    {
+        parent::init();
+        $this->preview = HelperBase::getParam('articlePreviewPlaceholder');
+    }
+
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
         return 'review';
+    }
+
+    public static function query()
+    {
+        return self::find()->select('id, title, notice, post, post_date')->orderBy('post_date DESC');
+    }
+
+    public function afterFind()
+    {
+        parent::afterFind();
+        if (!empty($this->notice)) {
+            $post_short = $this->notice;
+        } else {
+            $post_short = strip_tags($this->post);
+            $post_short = str_replace('&nbsp;', '', $post_short);
+            $post_short = HelperBase::makeShortText($post_short, HelperBase::getParam('shortArticleLength'));
+        }
+        $this->post_short = trim($post_short);
     }
 
     /**

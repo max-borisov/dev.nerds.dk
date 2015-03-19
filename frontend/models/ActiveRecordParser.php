@@ -1,13 +1,15 @@
 <?php
 namespace frontend\models;
 
+use frontend\models\ActiveRecord;
+
 /**
  * Custom ActiveRecord for parser models
  *
  * Class ActiveRecordParser
  * @package frontend\models
  */
-class ActiveRecordParser extends frontend\models\ActiveRecord
+class ActiveRecordParser extends ActiveRecord
 {
     public function beforeSave($insert)
     {
