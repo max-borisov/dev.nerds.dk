@@ -7,6 +7,6 @@ use frontend\components\HelperBase;
 echo '<nav class="pagination-holder">';
 echo LinkPager::widget([
     'pagination'        => $pages,
-    'maxButtonCount'    => HelperBase::getParam('linkPagerMaxButtonCount')
+    'maxButtonCount'    => HelperBase::getParam('linkPagerButtonsCount')
 ]);
 echo '</nav>';
