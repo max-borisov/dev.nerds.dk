@@ -43,15 +43,6 @@ class Review extends ActiveRecordParser
         return 'review';
     }
 
-    public function queryAll($keywords = '')
-    {
-        $query = self::find()->select('id, title, notice, post, post_date');
-        if ($keywords) {
-            $query->where(['like', 'keywords', $keywords]);
-        }
-        return $query->orderBy('post_date DESC');
-    }
-
     public function afterFind()
     {
         parent::afterFind();

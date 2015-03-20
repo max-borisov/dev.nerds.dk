@@ -1,4 +1,4 @@
-<form class="form-inline">
+<form class="form-inline" method="get" action="">
     <label for="filter" class="margin-down">Filtrér:</label>
     <select id="filter" class="form-control margin-down">
         <option value="">---------------------------------</option>
@@ -23,7 +23,7 @@
         <option value="21">TV-apparater</option>
         <option value="23">Video-afspillere</option>
     </select>
-    <input type="text" class="form-control margin-down" placeholder="Søgeord">
+    <input type="text" name="filter" value="<?= Yii::$app->request->get('filter') ?>" class="form-control margin-down" placeholder="Søgeord">
     <button type="submit" class="btn btn-primary margin-down">Søg</button>
     <a class="btn btn-default margin-down" href="#">Slet</a>
 </form>

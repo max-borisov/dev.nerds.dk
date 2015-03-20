@@ -12,8 +12,8 @@ class ArticleController extends AppController
     public function actionIndex()
     {
         $article = new Review;
-        $search = Yii::$app->request->get('search');
-        $query = $article->queryAll($search);
+        $filter = Yii::$app->request->get('filter');
+        $query = $article->queryAll($filter);
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count()]);
         $data = $query->offset($pages->offset)

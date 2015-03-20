@@ -4,14 +4,15 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\News;
-use frontend\controllers\AppController;
 use yii\data\Pagination;
 
 class NewsController extends AppController
 {
     public function actionIndex()
     {
-        $query = News::find()->select('id, title, af, post_date')->orderBy('post_date DESC');
+        $news = new News();
+        $filter = Yii::$app->request->get('filter');
+        $query = $news->queryAll($filter);
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count()]);
         $data = $query->offset($pages->offset)
