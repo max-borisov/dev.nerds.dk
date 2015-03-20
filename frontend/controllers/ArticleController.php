@@ -7,8 +7,6 @@ use frontend\controllers;
 use frontend\models\Review;
 use yii\data\Pagination;
 
-use frontend\components\HelperBase;
-
 class ArticleController extends AppController
 {
     public function actionIndex()

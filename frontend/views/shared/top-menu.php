@@ -17,7 +17,7 @@ use yii\helpers\Url;
         </li>
         <li class="green">
             <div class="item-holder">
-                <a href="#">Nyheder</a>
+                <a href="<?= Url::to('/news') ?>">Nyheder</a>
                 <ul>
                     <li><a href="#">link 1</a></li>
                     <li><a href="#">link 2</a></li>
@@ -28,7 +28,7 @@ use yii\helpers\Url;
         </li>
         <li class="purple">
             <div class="item-holder">
-                <a href="<?= Url::to('articles') ?>">Artikler</a>
+                <a href="<?= Url::to('/articles') ?>">Artikler</a>
                 <ul>
                     <li><a href="#">link 1</a></li>
                     <li><a href="#">link 2</a></li>

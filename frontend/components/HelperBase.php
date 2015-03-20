@@ -125,8 +125,8 @@ class HelperBase extends Component
         return $text = substr($text, 0, $maxLen) . '...';
     }
 
-    public static function formatArticleDate($date)
+    public static function formatPostDate($date)
     {
-        return date('d/m/Y', strtotime($date));
+        return date('d/m-Y', strtotime($date));
     }
 }

@@ -17,5 +17,5 @@ $articleLink = Url::to('/articles/' . $item['id']);
         <strong><?= Html::a(Html::encode($item['title']), $articleLink) ?></strong>
         <p><?= Html::encode($item['post_short']) ?></p>
     </td>
-    <td><?= HelperBase::formatArticleDate($item['post_date']) ?></td>
+    <td><?= HelperBase::formatPostDate($item['post_date']) ?></td>
 </tr>
