@@ -43,9 +43,13 @@ class Review extends ActiveRecordParser
         return 'review';
     }
 
-    public static function query()
+    public function queryAll($keywords = '')
     {
-        return self::find()->select('id, title, notice, post, post_date')->orderBy('post_date DESC');
+        $query = self::find()->select('id, title, notice, post, post_date');
+        if ($keywords) {
+            $query->where(['like', 'keywords', $keywords]);
+        }
+        return $query->orderBy('post_date DESC');
     }
 
     public function afterFind()
@@ -64,7 +68,7 @@ class Review extends ActiveRecordParser
     /**
      * @inheritdoc
      */
-    public function rules()
+    /*public function rules()
     {
         return [
             [['site_id', 'review_id', 'title', 'af', 'notice', 'post', 'post_date'], 'required'],
@@ -73,7 +77,7 @@ class Review extends ActiveRecordParser
             [['post_date'], 'safe'],
             [['title', 'af'], 'string', 'max' => 255]
         ];
-    }
+    }*/
 
     public function getType()
     {

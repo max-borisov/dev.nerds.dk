@@ -7,11 +7,15 @@ use frontend\controllers;
 use frontend\models\Review;
 use yii\data\Pagination;
 
+use frontend\components\HelperBase;
+
 class ArticleController extends AppController
 {
     public function actionIndex()
     {
-        $query = Review::query();
+        $article = new Review;
+        $search = Yii::$app->request->get('search');
+        $query = $article->queryAll($search);
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count()]);
         $data = $query->offset($pages->offset)
@@ -31,5 +35,4 @@ class ArticleController extends AppController
         }
         return $this->render('view', ['article' => $article]);
     }
-
 }
