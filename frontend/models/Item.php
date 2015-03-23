@@ -5,6 +5,7 @@ namespace frontend\models;
 use Yii;
 use frontend\models\Category;
 use frontend\models\ItemPhoto;
+use frontend\models\ActiveRecord;
 use frontend\components\HelperBase;
 //use frontend\components\HelperMarketPlace;
 use frontend\components\HelperUser;
@@ -65,7 +66,7 @@ use yii\base\Exception;
  * @property string $speaker_type
  * @property string $channels
  */
-class Item extends \app\components\ActiveRecord
+class Item extends ActiveRecord
 {
     const YES_FLAG  = 1;
     const NO_FLAG   = 0;
