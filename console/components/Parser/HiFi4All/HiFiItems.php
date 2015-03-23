@@ -1,13 +1,13 @@
 <?php
-namespace app\components\parser\hifi;
+namespace console\components\parser\hifi;
 
 use Yii;
 use yii\base\Exception;
-use app\components\parser\Base;
-use app\models\Category;
-use app\models\ExternalSite;
-use app\models\AdType;
-use app\models\Item;
+use console\components\parser\Base;
+use frontend\models\Category;
+use frontend\models\ExternalSite;
+use frontend\models\AdType;
+use frontend\models\Item;
 
 require_once __DIR__ . '/../Base.php';
 

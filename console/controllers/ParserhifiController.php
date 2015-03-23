@@ -14,7 +14,7 @@ class ParserhifiController extends Controller
 {
     public function actionItems()
     {
-        $this->_checkEnv();
+//        $this->_checkEnv();
         require_once Yii::getAlias('@console') . '/components/Parser/HiFi4All/HiFiItems.php';
         (new HiFiItems())->run();
     }
