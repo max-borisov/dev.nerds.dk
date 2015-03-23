@@ -1,12 +1,12 @@
 <?php
-namespace app\components\parser\hifi;
+namespace console\components\parser\hifi;
 
 use Yii;
 use yii\base\Exception;
-use app\components\parser\Base;
-use app\models\ExternalSite;
-use app\models\News;
-use app\components\HelperBase;
+use console\components\parser\Base;
+use frontend\models\ExternalSite;
+use frontend\models\News;
+use frontend\components\HelperBase;
 
 require_once __DIR__ . '/../Base.php';
 
