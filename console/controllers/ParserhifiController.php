@@ -21,14 +21,14 @@ class ParserhifiController extends Controller
 
     public function actionNews()
     {
-        $this->_checkEnv();
+//        $this->_checkEnv();
         require_once Yii::getAlias('@console') . '/components/Parser/HiFi4All//HiFiNews.php';
         (new HiFiNews())->run();
     }
 
     public function actionReviews()
     {
-        $this->_checkEnv();
+//        $this->_checkEnv();
         require_once Yii::getAlias('@console') . '/components/Parser/HiFi4All//HiFiReviews.php';
         (new HiFiReviews())->run();
     }
