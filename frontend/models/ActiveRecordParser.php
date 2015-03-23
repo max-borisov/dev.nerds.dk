@@ -24,9 +24,13 @@ class ActiveRecordParser extends ActiveRecord
         return parent::beforeSave($insert);
     }
 
-    public function queryAll($filter = '')
+    public function queryAll($filter = '', $additionalColumns = '')
     {
-        $query = self::find()->select('id, title, notice, post, post_date');
+        $columns = 'id, title, notice, post, post_date';
+        if (!empty($additionalColumns)) {
+            $columns .= ', ' . $additionalColumns;
+        }
+        $query = self::find()->select($columns);
         if ($filter) {
             $query->where(['like', 'keywords', $filter]);
         }

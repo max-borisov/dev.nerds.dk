@@ -13,6 +13,13 @@ class SandboxController extends Controller
 {
     public function actionIndex()
     {
+        $post = Review::find(1)->one()->post;
+        $post = strip_tags($post, '<img>');
+        $pattern = '/src="([^"]+)"/i';
+        preg_match($pattern, $post, $matches);
+        HelperBase::dump($matches);
 
+//        echo
+        HelperBase::dump($post);
     }
 }

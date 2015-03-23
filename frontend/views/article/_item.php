@@ -9,7 +9,7 @@ $articleLink = Url::to('/articles/' . $item['id']);
     <td><?= Html::a(
             Html::img(
                 $item['preview'],
-                ['class' => 'w-200', 'alt' => 'preview', 'title' => $item['title']]
+                ['class' => 'w-200', 'width' => '200', 'alt' => 'preview', 'title' => $item['title']]
             ),
             $articleLink) ?>
     </td>

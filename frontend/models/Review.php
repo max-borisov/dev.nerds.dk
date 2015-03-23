@@ -27,13 +27,6 @@ use frontend\components\HelperBase;
 class Review extends ActiveRecordParser
 {
     public $post_short = '';
-    public $preview = '';
-
-    public function init()
-    {
-        parent::init();
-        $this->preview = HelperBase::getParam('articlePreviewPlaceholder');
-    }
 
     /**
      * @inheritdoc
@@ -54,6 +47,9 @@ class Review extends ActiveRecordParser
             $post_short = HelperBase::makeShortText($post_short, HelperBase::getParam('shortArticleLength'));
         }
         $this->post_short = trim($post_short);
+        if (empty($this->preview)) {
+            $this->preview = HelperBase::getParam('articlePreviewPlaceholder');
+        }
     }
 
     /**
@@ -88,6 +84,7 @@ class Review extends ActiveRecordParser
             'af' => 'Af',
             'notice' => 'Notice',
             'post' => 'Post',
+            'preview' => 'Preview',
             'post_date' => 'Post Date',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

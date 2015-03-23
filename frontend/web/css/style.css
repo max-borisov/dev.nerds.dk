@@ -8013,7 +8013,8 @@ h2 span {
 
 img.w-200 {
     max-width: 200px;
-    height: auto;
+    /*height: auto;*/
+    height: 80px;
 }
 
 .articles-table > tbody > tr > td:first-child {

@@ -13,7 +13,7 @@ class ArticleController extends AppController
     {
         $article = new Review;
         $filter = Yii::$app->request->get('filter');
-        $query = $article->queryAll($filter);
+        $query = $article->queryAll($filter, 'preview');
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count()]);
         $data = $query->offset($pages->offset)
