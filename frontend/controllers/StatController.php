@@ -6,13 +6,8 @@ use Yii;
 use yii\helpers;
 use frontend\models\Item;
 use frontend\models\News;
+use frontend\models\NewsCategory;
 use frontend\models\Review;
-use frontend\models\ParserGame;
-use frontend\models\ParserTv;
-use frontend\models\ParserMusic;
-use frontend\models\ParserMovie;
-use frontend\models\ParserMedia;
-use frontend\models\ParserRadio;
 use frontend\models\ExternalSite;
 
 class StatController extends AppController
@@ -26,12 +21,25 @@ class StatController extends AppController
         $reviewsHiFi    = Review::find()->where('site_id = ' . ExternalSite::HIFI4ALL)->count();
         $reviewsRec     = Review::find()->where('site_id = ' . ExternalSite::RECORDERE)->count();
 
-        $gamesRec   = ParserGame::find()->where('site_id = ' . ExternalSite::RECORDERE)->count();
-        $tvRec      = ParserTv::find()->where('site_id = ' . ExternalSite::RECORDERE)->count();
-        $musicRec   = ParserMusic::find()->where('site_id = ' . ExternalSite::RECORDERE)->count();
-        $moviesRec  = ParserMovie::find()->where('site_id = ' . ExternalSite::RECORDERE)->count();
-        $mediaRec   = ParserMedia::find()->where('site_id = ' . ExternalSite::RECORDERE)->count();
-        $radioRec   = ParserRadio::find()->where('site_id = ' . ExternalSite::RECORDERE)->count();
+        $gamesRec = News::find()->where(
+                        'site_id = :site_id AND category_id = :cat_id',
+                        [':site_id' => ExternalSite::RECORDERE, ':cat_id' => NewsCategory::GAMES])->count();
+        $tvRec = News::find()->where(
+                    'site_id = :site_id AND category_id = :cat_id',
+                    [':site_id' => ExternalSite::RECORDERE, ':cat_id' => NewsCategory::TV])->count();
+
+        $musicRec = News::find()->where(
+                        'site_id = :site_id AND category_id = :cat_id',
+                        [':site_id' => ExternalSite::RECORDERE, ':cat_id' => NewsCategory::MUSIC])->count();
+        $moviesRec = News::find()->where(
+                        'site_id = :site_id AND category_id = :cat_id',
+                        [':site_id' => ExternalSite::RECORDERE, ':cat_id' => NewsCategory::MOVIES])->count();
+        $mediaRec = News::find()->where(
+                        'site_id = :site_id AND category_id = :cat_id',
+                        [':site_id' => ExternalSite::RECORDERE, ':cat_id' => NewsCategory::MEDIA])->count();
+        $radioRec = News::find()->where(
+                        'site_id = :site_id AND category_id = :cat_id',
+                        [':site_id' => ExternalSite::RECORDERE, ':cat_id' => NewsCategory::RADIO])->count();
 
         $itemsTotal     = $itemsHiFi + $itemsDba;
         $newsTotal      = $newsHiFi + $newsRec;
