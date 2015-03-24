@@ -1,7 +1,7 @@
 <?php
 
-use app\models\Category;
-use app\models\AdType;
+use frontend\models\Category;
+use frontend\models\AdType;
 
 return [
     Category::OTHER_ANALOG_CAMERAS => [
