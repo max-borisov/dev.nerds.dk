@@ -5,7 +5,7 @@ namespace frontend\models;
 use Yii;
 
 /**
- * This is the model class for table "movie".
+ * This is the model class for table "parser_media".
  *
  * @property integer $id
  * @property integer $site_id
@@ -16,14 +16,14 @@ use Yii;
  * @property integer $created_at
  * @property integer $updated_at
  */
-class Movie extends ActiveRecordParser
+class ParserMedia extends ActiveRecordParser
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'movie';
+        return 'parser_media';
     }
 
     /**

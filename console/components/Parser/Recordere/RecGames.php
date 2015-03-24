@@ -2,7 +2,7 @@
 namespace console\components\parser\recordere;
 
 use Yii;
-use frontend\models\Game;
+use frontend\models\ParserGame;
 use frontend\models\ExternalSite;
 use yii\base\Exception;
 
@@ -15,7 +15,7 @@ class RecGames extends RecBase
 
     public function saveItem($data)
     {
-        $item = $this->_beforeSave((new Game), $data);
+        $item = $this->_beforeSave((new ParserGame), $data);
         if ($item->save(false)) {
             return $item->id;
         } else {
