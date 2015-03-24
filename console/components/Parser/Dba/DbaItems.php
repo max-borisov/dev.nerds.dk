@@ -1,13 +1,13 @@
 <?php
-namespace app\components\parser\dba;
+namespace console\components\parser\dba;
 
-use app\models\TopCategory;
 use Yii;
-use app\components\parser\Base;
-use app\models\ExternalSite;
-use app\models\Item;
-use app\models\AdType;
-use app\components\HelperBase;
+use frontend\models\TopCategory;
+use console\components\parser\Base;
+use console\components\HelperBase;
+use frontend\models\ExternalSite;
+use frontend\models\Item;
+use frontend\models\AdType;
 use yii\base\Exception;
 use yii\db\IntegrityException;
 
