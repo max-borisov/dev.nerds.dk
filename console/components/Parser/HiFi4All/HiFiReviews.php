@@ -3,7 +3,6 @@ namespace console\components\parser\hifi;
 
 use yii\base\Exception;
 use console\components\parser\Base;
-use frontend\components\HelperBase;
 use frontend\models\Review;
 use frontend\models\ExternalSite;
 use frontend\models\ReviewType;

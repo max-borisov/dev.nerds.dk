@@ -4,7 +4,7 @@ namespace console\components\parser;
 use Yii;
 use yii\base\Component;
 use yii\base\Exception;
-use frontend\components\HelperBase;
+use app\components\HelperBase;
 
 abstract class Base extends Component
 {

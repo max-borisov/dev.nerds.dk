@@ -6,7 +6,6 @@ use yii\base\Exception;
 use console\components\parser\Base;
 use frontend\models\ExternalSite;
 use frontend\models\News;
-use frontend\components\HelperBase;
 
 require_once __DIR__ . '/../Base.php';
 
