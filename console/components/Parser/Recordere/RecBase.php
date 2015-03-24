@@ -5,6 +5,7 @@ use Yii;
 use console\components\parser\Base;
 use yii\base\Exception;
 use frontend\models\ExternalSite;
+use frontend\models\News;
 
 require_once __DIR__ . '/../Base.php';
 
@@ -109,31 +110,15 @@ abstract class RecBase extends Base
         return $model;
     }
 
-    protected function _beforeSave($model, $data)
+    protected function _beforeSave($data, $category)
     {
+        $model              = new News();
         $model->site_id     = ExternalSite::RECORDERE;
-        $model->article_id  = $data['id'];
+        $model->news_id     = $data['id'];
+        $model->category_id = $category;
         $model->title       = $data['title'];
         $model->post        = $data['post'];
         $model->post_date   = $data['date'];
         return $model;
-    }
-
-    public function getExistingArticles($table, $siteId)
-    {
-        $data = (new \yii\db\Query())
-            ->select('article_id')
-            ->from($table)
-            ->where('site_id = :site_id', ['site_id' => $siteId])
-            ->all();
-
-        if ($data) {
-            $tmp = [];
-            foreach ($data as $item) {
-                $tmp[] = $item['article_id'];
-            }
-            $data = $tmp;
-        }
-        return $data;
     }
 }

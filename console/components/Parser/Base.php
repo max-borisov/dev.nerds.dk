@@ -40,7 +40,7 @@ abstract class Base extends Component
 
     public function iconv($string)
     {
-        return iconv('latin1', 'utf8', $string);
+        return iconv('latin1', 'UTF-8//TRANSLIT', $string);
     }
 
     public function getExistingNews($siteId)
@@ -106,7 +106,7 @@ abstract class Base extends Component
 
     public function getExistingRowsCount($table, $site_id)
     {
-        return $data = (new \yii\db\Query())
+        return (new \yii\db\Query())
             ->select('id')
             ->from($table)
             ->where('site_id = :site_id', ['site_id' => $site_id])

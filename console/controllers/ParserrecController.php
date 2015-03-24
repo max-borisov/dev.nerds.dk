@@ -17,21 +17,20 @@ class ParserrecController extends Controller
 {
     public function actionNews()
     {
-        $this->_checkEnv();
         require_once Yii::getAlias('@console') . '/components/Parser/Recordere/RecNews.php';
         (new RecNews())->run();
+        exit(Controller::EXIT_CODE_NORMAL);
     }
 
     public function actionReviews()
     {
-        $this->_checkEnv();
         require_once Yii::getAlias('@console') . '/components/Parser/Recordere/RecReviews.php';
         (new RecReviews())->run();
+        exit(Controller::EXIT_CODE_NORMAL);
     }
 
     public function actionMedia()
     {
-        $this->_checkEnv();
         require_once Yii::getAlias('@console') . '/components/Parser/Recordere/RecGames.php';
         (new RecGames())->run();
 
@@ -49,15 +48,7 @@ class ParserrecController extends Controller
 
         require_once Yii::getAlias('@console') . '/components/Parser/Recordere/RecRadio.php';
         (new RecRadio())->run();
-    }
 
-    private function _checkEnv()
-    {
-        return true;
-
-        if (YII_ENV_DEV) {
-            echo "Command does not work under DEV environment.\r\n";
-            exit(0);
-        }
+        exit(Controller::EXIT_CODE_NORMAL);
     }
 }
