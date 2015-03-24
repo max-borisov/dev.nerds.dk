@@ -5,7 +5,6 @@ namespace frontend\models;
 use Yii;
 use frontend\models\Category;
 use frontend\models\ItemPhoto;
-use frontend\models\ActiveRecord;
 use frontend\components\HelperBase;
 //use frontend\components\HelperMarketPlace;
 use frontend\components\HelperUser;

@@ -3,7 +3,6 @@
 namespace frontend\models;
 
 use Yii;
-use frontend\models\ActiveRecord;
 use frontend\models\ReviewType;
 use frontend\components\HelperBase;
 

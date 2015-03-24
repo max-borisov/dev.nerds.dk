@@ -3,7 +3,6 @@
 namespace frontend\models;
 
 use Yii;
-use frontend\models\ActiveRecordParser;
 
 /**
  * This is the model class for table "news".

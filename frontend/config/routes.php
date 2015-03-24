@@ -8,5 +8,7 @@ return [
         '/articles/<id:\d+>' => 'article/view',
         '/news' => 'news/index',
         '/news/<id:\d+>' => 'news/view',
+
+        '/stat' => 'stat/index',
     ],
 ];
