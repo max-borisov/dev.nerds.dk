@@ -10,9 +10,10 @@ require_once __DIR__ . '/RecBase.php';
 
 class RecNews extends RecBase
 {
-    protected $_baseUrl = 'http://www.recordere.dk/indhold/templates/design.aspx?articleid=';
-    protected $_catalogUrl = 'http://www.recordere.dk/nyheder/';
-    private $_prevCatalogUrl = 'http://www.recordere.dk/nyheder/nyhedsliste.aspx';
+    private $_table             = 'news';
+    protected $_baseUrl         = 'http://www.recordere.dk/indhold/templates/design.aspx?articleid=';
+    protected $_catalogUrl      = 'http://www.recordere.dk/nyheder/';
+    private $_prevCatalogUrl    = 'http://www.recordere.dk/nyheder/nyhedsliste.aspx';
 
     public function saveItem($data)
     {
@@ -48,11 +49,11 @@ class RecNews extends RecBase
     public function run()
     {
         set_time_limit(0);
-        $before = $this->getExistingRowsCount('news', ExternalSite::RECORDERE);
+        $before = $this->getExistingRowsCount($this->_table, ExternalSite::RECORDERE);
         $catalogLinks = $this->getCatalogLinks();
         $existingNews = $this->getExistingNews(ExternalSite::RECORDERE);
         $this->_processAndSave($catalogLinks, $existingNews, 'News');
-        $after = $this->getExistingRowsCount('news', ExternalSite::RECORDERE);
+        $after = $this->getExistingRowsCount($this->_table, ExternalSite::RECORDERE);
         $this->done('RecNews', $before, $after);
     }
 }

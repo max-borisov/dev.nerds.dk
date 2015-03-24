@@ -11,8 +11,9 @@ require_once __DIR__ . '/RecBase.php';
 
 class RecReviews extends RecBase
 {
-    protected $_baseUrl = 'http://www.recordere.dk/indhold/templates/design.aspx?articleid=';
-    protected $_catalogUrl = 'http://www.recordere.dk/anmeldelser/';
+    private $_table         = 'review';
+    protected $_baseUrl     = 'http://www.recordere.dk/indhold/templates/design.aspx?articleid=';
+    protected $_catalogUrl  = 'http://www.recordere.dk/anmeldelser/';
 
     public function saveItem($data)
     {
@@ -29,11 +30,11 @@ class RecReviews extends RecBase
     public function run()
     {
         set_time_limit(0);
-        $before = $this->getExistingRowsCount('review', ExternalSite::RECORDERE);
+        $before = $this->getExistingRowsCount($this->_table, ExternalSite::RECORDERE);
         $catalogLinks = $this->getCatalogLinks();
         $existingReviews = $this->getExistingReviews(ExternalSite::RECORDERE);
         $this->_processAndSave($catalogLinks, $existingReviews, 'Reviews');
-        $after = $this->getExistingRowsCount('review', ExternalSite::RECORDERE);
+        $after = $this->getExistingRowsCount($this->_table, ExternalSite::RECORDERE);
         $this->done('RecReviews', $before, $after);
     }
 }

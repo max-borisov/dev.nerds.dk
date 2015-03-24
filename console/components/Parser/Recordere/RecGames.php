@@ -10,8 +10,9 @@ require_once __DIR__ . '/RecBase.php';
 
 class RecGames extends RecBase
 {
-    protected $_catalogUrl = 'http://www.recordere.dk/spil/';
-    protected $_baseUrl = 'http://www.recordere.dk/indhold/templates/design.aspx?articleid=';
+    private $_table         = 'parser_game';
+    protected $_catalogUrl  = 'http://www.recordere.dk/spil/';
+    protected $_baseUrl     = 'http://www.recordere.dk/indhold/templates/design.aspx?articleid=';
 
     public function saveItem($data)
     {
@@ -26,11 +27,11 @@ class RecGames extends RecBase
     public function run()
     {
         set_time_limit(0);
-        $before = $this->getExistingRowsCount('game', ExternalSite::RECORDERE);
+        $before = $this->getExistingRowsCount($this->_table, ExternalSite::RECORDERE);
         $catalogLinks = $this->getCatalogLinks();
-        $existingArticles = $this->getExistingArticles('game', ExternalSite::RECORDERE);
+        $existingArticles = $this->getExistingArticles($this->_table, ExternalSite::RECORDERE);
         $this->_processAndSave($catalogLinks, $existingArticles, 'Games');
-        $after = $this->getExistingRowsCount('game', ExternalSite::RECORDERE);
+        $after = $this->getExistingRowsCount($this->_table, ExternalSite::RECORDERE);
         $this->done('Games', $before, $after);
     }
 }
