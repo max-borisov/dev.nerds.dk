@@ -1,11 +1,10 @@
 <?php
-namespace app\components\parser\recordere;
+namespace console\components\parser\recordere;
 
 use Yii;
-use app\components\parser\Base;
+use console\components\parser\Base;
 use yii\base\Exception;
-use app\models\ExternalSite;
-use app\components\HelperBase;
+use frontend\models\ExternalSite;
 
 require_once __DIR__ . '/../Base.php';
 

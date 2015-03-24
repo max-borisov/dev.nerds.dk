@@ -1,12 +1,10 @@
 <?php
-namespace app\components\parser\recordere;
+namespace console\components\parser\recordere;
 
 use Yii;
-use app\models\Review;
-use app\models\ReviewType;
-use app\components\parser\Base;
-use app\models\ExternalSite;
-use app\components\HelperBase;
+use frontend\models\Review;
+use frontend\models\ReviewType;
+use frontend\models\ExternalSite;
 use yii\base\Exception;
 
 require_once __DIR__ . '/RecBase.php';

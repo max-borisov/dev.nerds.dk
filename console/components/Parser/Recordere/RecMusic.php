@@ -1,9 +1,9 @@
 <?php
-namespace app\components\parser\recordere;
+namespace console\components\parser\recordere;
 
 use Yii;
-use app\models\Music;
-use app\models\ExternalSite;
+use frontend\models\Music;
+use frontend\models\ExternalSite;
 use yii\base\Exception;
 
 require_once __DIR__ . '/RecBase.php';

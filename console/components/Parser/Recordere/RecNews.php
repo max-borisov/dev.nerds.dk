@@ -1,11 +1,10 @@
 <?php
-namespace app\components\parser\recordere;
+namespace console\components\parser\recordere;
 
 use Yii;
-use app\models\ExternalSite;
-use app\models\News;
+use frontend\models\ExternalSite;
+use frontend\models\News;
 use yii\base\Exception;
-use app\components\HelperBase;
 
 require_once __DIR__ . '/RecBase.php';
 

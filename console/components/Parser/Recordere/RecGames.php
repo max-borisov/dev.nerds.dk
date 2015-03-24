@@ -1,10 +1,9 @@
 <?php
-namespace app\components\parser\recordere;
+namespace console\components\parser\recordere;
 
 use Yii;
-use app\models\Game;
-use app\models\ExternalSite;
-use app\components\HelperBase;
+use frontend\models\Game;
+use frontend\models\ExternalSite;
 use yii\base\Exception;
 
 require_once __DIR__ . '/RecBase.php';
