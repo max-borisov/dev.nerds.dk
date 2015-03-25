@@ -23,7 +23,7 @@ use frontend\components\HelperBase;
  * @property integer $created_at
  * @property integer $updated_at
  */
-class Review extends ActiveRecordParser
+class Review extends ActiveRecord
 {
     public $post_short = '';
 
@@ -33,6 +33,32 @@ class Review extends ActiveRecordParser
     public static function tableName()
     {
         return 'review';
+    }
+
+    public function beforeSave($insert)
+    {
+        $this->encodeDataAndFillKeywords();
+        $this->_extractPreviewFromPost();
+        return parent::beforeSave($insert);
+    }
+
+    private function _extractPreviewFromPost()
+    {
+        $post = strip_tags($this->post, '<img>');
+        $pattern = '/src="([^"]+)"/i';
+        preg_match($pattern, $post, $matches);
+        if (empty($matches[1])) return false;
+        $this->preview = $matches[1];
+    }
+
+    public function queryAll($filter = '')
+    {
+        $columns = 'id, title, notice, post, post_date, preview';
+        $query = self::find()->select($columns);
+        if ($filter) {
+            $query->where(['like', 'keywords', $filter]);
+        }
+        return $query->orderBy('post_date DESC');
     }
 
     public function afterFind()

@@ -19,7 +19,7 @@ use Yii;
  * @property integer $created_at
  * @property integer $updated_at
  */
-class News extends ActiveRecordParser
+class News extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -27,6 +27,26 @@ class News extends ActiveRecordParser
     public static function tableName()
     {
         return 'news';
+    }
+
+    public function queryAll($filter = '', $category = 0)
+    {
+        $category = (int)$category;
+        $columns = 'id, title, notice, post, post_date';
+        $query = self::find()->select($columns);
+        if ($category) {
+            $query->filterWhere(['category_id' => $category]);
+            $query->andFilterWhere(['like', 'keywords', $filter]);
+        } else {
+            $query->filterWhere(['like', 'keywords', $filter]);
+        }
+        return $query->orderBy('post_date DESC');
+    }
+
+    public function beforeSave($insert)
+    {
+        $this->encodeDataAndFillKeywords();
+        return parent::beforeSave($insert);
     }
 
     /**
