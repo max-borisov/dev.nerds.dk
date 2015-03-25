@@ -5,6 +5,7 @@ namespace frontend\models;
 use Yii;
 use frontend\models\ReviewType;
 use frontend\components\HelperBase;
+use frontend\components\NewsReviewsBehavior;
 
 /**
  * This is the model class for table "review".
@@ -35,9 +36,15 @@ class Review extends ActiveRecord
         return 'review';
     }
 
+    public function behaviors()
+    {
+        return [
+            NewsReviewsBehavior::className(),
+        ];
+    }
+
     public function beforeSave($insert)
     {
-        $this->encodeDataAndFillKeywords();
         $this->_extractPreviewFromPost();
         return parent::beforeSave($insert);
     }

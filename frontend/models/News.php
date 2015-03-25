@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use frontend\components\NewsReviewsBehavior;
 
 /**
  * This is the model class for table "news".
@@ -29,6 +30,13 @@ class News extends ActiveRecord
         return 'news';
     }
 
+    public function behaviors()
+    {
+        return [
+            NewsReviewsBehavior::className(),
+        ];
+    }
+
     public function queryAll($filter = '', $category = 0)
     {
         $category = (int)$category;
@@ -41,12 +49,6 @@ class News extends ActiveRecord
             $query->filterWhere(['like', 'keywords', $filter]);
         }
         return $query->orderBy('post_date DESC');
-    }
-
-    public function beforeSave($insert)
-    {
-        $this->encodeDataAndFillKeywords();
-        return parent::beforeSave($insert);
     }
 
     /**
