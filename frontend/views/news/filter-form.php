@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 ?>
 <form class="form-inline" method="get" action="">
     <label for="filter" class="margin-down">Filtrér:</label>
@@ -11,5 +12,5 @@ use yii\helpers\Html;
     ) ?>
     <input type="text" name="filter" value="<?= $filterKeywords ?>" class="form-control margin-down" placeholder="Søgeord">
     <button type="submit" class="btn btn-primary margin-down">Søg</button>
-    <a class="btn btn-default margin-down" href="#">Slet</a>
+    <a class="btn btn-default margin-down" href="<?= Url::to('/news') ?>">Slet</a>
 </form>
