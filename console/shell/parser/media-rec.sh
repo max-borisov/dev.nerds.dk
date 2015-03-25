@@ -2,7 +2,7 @@
 
 echo "[----------] BEGIN. RECORDERE MEDIA parser script."
 
-cd ../../
+cd ../../../
 php yii parserrec/media >> console/runtime/logs/parser.log
 
 echo "[----------] END. RECORDERE MEDIA parser script."

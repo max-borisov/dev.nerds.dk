@@ -2,7 +2,7 @@
 
 echo "[----------] BEGIN. HIFI NEWS parser script."
 
-cd ../../
+cd ../../../
 php yii parserhifi/news >> console/runtime/logs/parser.log
 
 echo "[----------] END. HIFI NEWS parser script."
