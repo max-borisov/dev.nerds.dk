@@ -3,7 +3,10 @@
 $this->title = 'News';
 ?>
 <h1>Nyheder</h1>
-<?= $this->render('filter-form') ?>
+<?= $this->render(
+    'filter-form',
+    ['newsCategories' => $newsCategories, 'filterKeywords' => $filterKeywords, 'filterCategory' => $filterCategory]
+) ?>
 <?= $this->render('../shared/link-pager', ['pages' => $pages]) ?>
 <div class="table-responsive">
     <table class="table table-hover table-striped">

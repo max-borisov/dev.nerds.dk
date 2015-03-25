@@ -4,7 +4,7 @@
 $this->title = 'Atricles';
 ?>
 <h1>Artikler</h1>
-<?= $this->render('filter-form') ?>
+<?= $this->render('filter-form', ['filterKeywords' => $filterKeywords]) ?>
 <?= $this->render('../shared/link-pager', ['pages' => $pages]) ?>
 <div class="table-responsive">
     <table class="table table-hover articles-table">

@@ -2,8 +2,11 @@
 
 namespace frontend\controllers;
 
+use frontend\components\HelperBase;
+
 use Yii;
 use frontend\models\News;
+use frontend\models\NewsCategory;
 use yii\data\Pagination;
 
 class NewsController extends AppController
@@ -11,16 +14,21 @@ class NewsController extends AppController
     public function actionIndex()
     {
         $news = new News();
-        $filter = Yii::$app->request->get('filter');
-        $query = $news->queryAll($filter);
+        $newsCategories = NewsCategory::getDropDownList();
+        $filterKeywords = Yii::$app->request->get('filter');
+        $filterCategory = Yii::$app->request->get('category');
+        $query = $news->queryAll($filterKeywords, $filterCategory);
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count()]);
         $data = $query->offset($pages->offset)
             ->limit($pages->limit)
             ->all();
         return $this->render('index', [
-            'data' => $data,
-            'pages' => $pages,
+            'data'              => $data,
+            'pages'             => $pages,
+            'newsCategories'    => $newsCategories,
+            'filterKeywords'    => $filterKeywords,
+            'filterCategory'    => $filterCategory,
         ]);
     }
 

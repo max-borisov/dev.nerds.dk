@@ -12,16 +12,17 @@ class ArticleController extends AppController
     public function actionIndex()
     {
         $article = new Review;
-        $filter = Yii::$app->request->get('filter');
-        $query = $article->queryAll($filter, 'preview');
+        $filterKeywords = Yii::$app->request->get('filter');
+        $query = $article->queryAll($filterKeywords);
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count()]);
         $data = $query->offset($pages->offset)
             ->limit($pages->limit)
             ->all();
         return $this->render('index', [
-            'data'      => $data,
-            'pages'     => $pages,
+            'data'              => $data,
+            'pages'             => $pages,
+            'filterKeywords'    => $filterKeywords,
         ]);
     }
 

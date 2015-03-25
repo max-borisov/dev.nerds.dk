@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "news_category".
@@ -14,12 +15,13 @@ use Yii;
  */
 class NewsCategory extends \yii\db\ActiveRecord
 {
-    const GAMES     = 1;
-    const MEDIA     = 2;
-    const MOVIES    = 3;
-    const MUSIC     = 4;
-    const RADIO     = 5;
-    const TV        = 6;
+    const GAMES         = 1;
+    const MEDIA         = 2;
+    const MOVIES        = 3;
+    const MUSIC         = 4;
+    const RADIO         = 5;
+    const TV            = 6;
+    const UNCATEGORIZED = 7;
 
     /**
      * @inheritdoc
@@ -27,6 +29,12 @@ class NewsCategory extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'news_category';
+    }
+
+    public static function getDropDownList()
+    {
+        $list = self::find()->select('id, title')->orderBy('id ASC')->asArray()->all();
+        return ArrayHelper::map($list, 'id', 'title');
     }
 
     /**
