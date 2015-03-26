@@ -2,8 +2,6 @@
 
 namespace frontend\controllers;
 
-use frontend\components\HelperBase;
-
 use Yii;
 use frontend\models\News;
 use frontend\models\NewsCategory;
