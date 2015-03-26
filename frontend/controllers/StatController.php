@@ -21,25 +21,12 @@ class StatController extends AppController
         $reviewsHiFi    = Review::find()->where('site_id = ' . ExternalSite::HIFI4ALL)->count();
         $reviewsRec     = Review::find()->where('site_id = ' . ExternalSite::RECORDERE)->count();
 
-        $gamesRec = News::find()->where(
-                        'site_id = :site_id AND category_id = :cat_id',
-                        [':site_id' => ExternalSite::RECORDERE, ':cat_id' => NewsCategory::GAMES])->count();
-        $tvRec = News::find()->where(
-                    'site_id = :site_id AND category_id = :cat_id',
-                    [':site_id' => ExternalSite::RECORDERE, ':cat_id' => NewsCategory::TV])->count();
-
-        $musicRec = News::find()->where(
-                        'site_id = :site_id AND category_id = :cat_id',
-                        [':site_id' => ExternalSite::RECORDERE, ':cat_id' => NewsCategory::MUSIC])->count();
-        $moviesRec = News::find()->where(
-                        'site_id = :site_id AND category_id = :cat_id',
-                        [':site_id' => ExternalSite::RECORDERE, ':cat_id' => NewsCategory::MOVIES])->count();
-        $mediaRec = News::find()->where(
-                        'site_id = :site_id AND category_id = :cat_id',
-                        [':site_id' => ExternalSite::RECORDERE, ':cat_id' => NewsCategory::MEDIA])->count();
-        $radioRec = News::find()->where(
-                        'site_id = :site_id AND category_id = :cat_id',
-                        [':site_id' => ExternalSite::RECORDERE, ':cat_id' => NewsCategory::RADIO])->count();
+        $gamesRec   = $this->_getNewsCount(NewsCategory::GAMES);
+        $tvRec      = $this->_getNewsCount(NewsCategory::TV);
+        $musicRec   = $this->_getNewsCount(NewsCategory::MUSIC);
+        $moviesRec  = $this->_getNewsCount(NewsCategory::MOVIES);
+        $mediaRec   = $this->_getNewsCount(NewsCategory::MEDIA);
+        $radioRec   = $this->_getNewsCount(NewsCategory::RADIO);
 
         $itemsTotal     = $itemsHiFi + $itemsDba;
         $newsTotal      = $newsHiFi + $newsRec;
@@ -65,5 +52,12 @@ class StatController extends AppController
         ];
 
         return $this->render('index', ['data' => $data]);
+    }
+
+    private function _getNewsCount($category)
+    {
+        return News::find()->where(
+            'site_id = :site_id AND category_id = :cat_id',
+            [':site_id' => ExternalSite::RECORDERE, ':cat_id' => $category])->count();
     }
 }
