@@ -50,7 +50,7 @@ use yii\helpers\Url;
         </li>
         <li class="red">
             <div class="item-holder">
-                <a href="#">Markedspladsen</a>
+                <a href="<?= Url::to('/market') ?>">Markedspladsen</a>
                 <ul>
                     <li><a href="#">link 1</a></li>
                     <li><a href="#">link 2</a></li>

@@ -1,5 +1,6 @@
 <?php
 /* @var $this yii\web\View */
+
 $this->title = 'News';
 ?>
 <h1>Nyheder</h1>
