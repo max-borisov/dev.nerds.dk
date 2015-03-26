@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\models\Item;
 use Yii;
 use yii\base\ErrorException;
 use yii\db\Exception;
@@ -13,6 +14,7 @@ class SandboxController extends Controller
 {
     public function actionIndex()
     {
-
+        $item = Item::find(1)->one();
+        HelperBase::dump($item->category['title']);
     }
 }

@@ -4,7 +4,6 @@ namespace frontend\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-use frontend\models\ActiveRecord;
 
 /**
  * This is the model class for table "ad_type".
@@ -45,7 +44,7 @@ class AdType extends ActiveRecord
      * Retrieve data (id and title)
      * @return array
      */
-    public function prepareList()
+    /*public function prepareList()
     {
         $data = (new \yii\db\Query())
             ->select('id, title')
@@ -54,7 +53,7 @@ class AdType extends ActiveRecord
             ->orderBy('id ASC')
             ->all();
         return ArrayHelper::map($data, 'id', 'title');
-    }
+    }*/
 
     /**
      * Build relation with Item model

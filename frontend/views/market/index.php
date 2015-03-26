@@ -18,7 +18,12 @@ $this->title = 'Market';
         </tr>
         </thead>
         <tbody>
-            <?= $this->render('_item') ?>
+        <?php
+        foreach ($data as $item) {
+            echo $this->render('_item', ['item' => $item]);
+        }
+        ?>
+
         </tbody>
     </table>
 </div>
