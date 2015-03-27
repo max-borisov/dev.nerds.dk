@@ -66,6 +66,7 @@ use yii\base\Exception;
  * @property string $channels
  * @property integer $created_at
  * @property integer $updated_at
+ * @property string $keywords
  */
 class Item extends ActiveRecord
 {
@@ -161,6 +162,20 @@ class Item extends ActiveRecord
         if (!isset($this->user_id)) {
             throw new Exception('User id cannot be blank.');
         }
+
+        $keywordStack = [];
+        array_push($keywordStack, $this->title);
+        array_push($keywordStack, $this->description);
+        array_push($keywordStack, $this->s_model);
+        array_push($keywordStack, $this->s_producer);
+        array_push($keywordStack, $this->s_product);
+        array_push($keywordStack, $this->media_genre);
+        $keywords = implode(' ', $keywordStack);
+        $keywords = strip_tags($keywords);
+        $keywords = str_replace('&nbsp;', '', $keywords);
+        $keywords = preg_replace('/\s+/', ' ', $keywords);
+        $keywords = trim($keywords);
+        $this->keywords = $keywords;
         return parent::beforeSave($insert);
     }
 
