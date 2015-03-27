@@ -86,7 +86,6 @@ class HiFiNews extends Base
     public function run()
     {
         set_time_limit(0);
-
         $before = $this->getExistingRowsCount('news', ExternalSite::HIFI4ALL);
         for ($side = 1; $side <= 8; $side++) {
             $existingNews = $this->getExistingNews(ExternalSite::HIFI4ALL);

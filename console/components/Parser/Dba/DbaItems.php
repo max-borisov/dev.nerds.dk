@@ -4,7 +4,7 @@ namespace console\components\parser\dba;
 use Yii;
 use frontend\models\TopCategory;
 use console\components\parser\Base;
-use console\components\HelperBase;
+use frontend\components\HelperBase;
 use frontend\models\ExternalSite;
 use frontend\models\Item;
 use frontend\models\AdType;
@@ -197,6 +197,7 @@ class DbaItems extends Base
 
         $item->site_id      = ExternalSite::DBA;
         $item->title        = $data['title'];
+        $item->description  = $data['post'];
         $item->s_item_id    = $data['id'];
         $item->s_user       = $data['username'];
         $item->s_location   = $data['location'];
@@ -351,7 +352,6 @@ class DbaItems extends Base
                 $data['category_id'] = $category;
                 $data['ad_type_id'] = $advType;
                 $this->saveItem($data);
-//                usleep(100);
             }
         }
     }
@@ -359,11 +359,8 @@ class DbaItems extends Base
     public function run()
     {
         set_time_limit(0);
-
         $before = $this->getExistingRowsCount('item', ExternalSite::DBA);
         $urlSet = $this->urlsSet();
-//        HelperBase::dump($urlSet, true);
-
         foreach ($urlSet as $topCategory => $dataToBeParsed) {
             foreach ($dataToBeParsed as $category => $data) {
                 $baseUrl = $data['url'];

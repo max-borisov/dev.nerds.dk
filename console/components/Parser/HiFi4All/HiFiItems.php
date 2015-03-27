@@ -124,14 +124,14 @@ class HiFiItems extends Base
         $data['price'] = $price;
 
         // Description
-        $pattern = '|<td\s+width="100%"\s+valign="top">([^<]+)</td>|is';
+//        $pattern = '|<td\s+width="100%"\s+valign="top">([^<]+)</td>|is';
+        $pattern = '|<td\s+width="100%"\s+valign="top">(.*?)</td>|is';
         preg_match_all($pattern, $root, $matches);
-        if (empty($matches[0])) {
-            $description = '';
-        } else {
-            $description = trim($matches[1][0]);
+        if (isset($matches[1], $matches[1][2])) {
+            $description = trim($matches[1][2]);
             $description = preg_replace('/\s+/', ' ', $description);
-
+        } else {
+            $description = '';
         }
         $data['description'] = $description;
 
@@ -293,7 +293,6 @@ class HiFiItems extends Base
     public function run()
     {
         set_time_limit(0);
-
         $before = $this->getExistingRowsCount('item', ExternalSite::HIFI4ALL);
         $baseOffset = 53;
         $offset = 0;
@@ -302,7 +301,6 @@ class HiFiItems extends Base
             $ids = $this->getCatalogLinks($offset);
             $this->_parsePageAndSave($ids, $existingItems);
             $offset += $baseOffset;
-//            break;
         }
         $after = $this->getExistingRowsCount('item', ExternalSite::HIFI4ALL);
         $this->done('HiFiItems', $before, $after);
