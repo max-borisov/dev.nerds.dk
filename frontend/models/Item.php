@@ -64,6 +64,8 @@ use yii\base\Exception;
  * @property string $speaker
  * @property string $speaker_type
  * @property string $channels
+ * @property integer $created_at
+ * @property integer $updated_at
  */
 class Item extends ActiveRecord
 {
@@ -131,7 +133,7 @@ class Item extends ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
-    public function getType()
+    public function getAdType()
     {
         return $this->hasOne(AdType::className(), ['id' => 'ad_type_id']);
     }

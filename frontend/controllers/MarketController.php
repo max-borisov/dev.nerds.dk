@@ -12,7 +12,7 @@ class MarketController extends AppController
 {
     public function actionIndex()
     {
-        $data = Item::find()->select('id, title, price, s_date, created_at')->with('category', 'type')->orderBy('created_at ASC')->limit(10)->all();
+        $data = Item::find()->select('id, title, price, s_date, created_at')->with('category', 'adType')->orderBy('created_at ASC')->limit(10)->all();
 //        HelperBase::dump($data);
 
         return $this->render('index', ['data' => $data]);
@@ -42,6 +42,6 @@ class MarketController extends AppController
         if (!$item) {
             $this->redirect('/market');
         }
-        return $this->render('view', ['data' => $item]);
+        return $this->render('view', ['item' => $item]);
     }
 }

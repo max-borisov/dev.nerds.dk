@@ -14,9 +14,6 @@ $itemUrl = Url::to('/market/' . $item->id);
     <td align="right"><?= $item->price ?></td>
     <td align="right"><?= HelperBase::formatPostDate($item->s_date) ?></td>
     <td>
-        <!--<a data-footer="Image description" data-title="Image title" data-toggle="lightbox" href="images/slide-img01.jpg">
-            <img class="img-responsive" src="images/slide-img01.jpg">
-        </a>-->
         <?= Html::a(Html::img($item->preview, ['class' => 'img-responsive']), $itemUrl, ['data-footer' => 'Image description', 'data-title' => $item->title, 'data-toggle' => 'lightbox']) ?>
     </td>
 </tr>
