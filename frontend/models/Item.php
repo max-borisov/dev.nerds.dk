@@ -166,12 +166,12 @@ class Item extends ActiveRecord
     {
         // Set preview for each item
         // Default(blank) preview
-        $this->preview = HelperBase::getParam('thumb')['placeholder'];
+        $this->preview = HelperBase::getParam('articleItemPlaceholder');
 
-        if (!empty($this->s_preview) && $this->site_id == ExternalSite::HIFI4ALL) {
+        if ($this->s_preview && $this->site_id == ExternalSite::HIFI4ALL) {
             $this->preview = HelperBase::getParam('HiFi4AllPic') . '/' . $this->s_preview;
         }
-        if (!empty($this->s_preview) && $this->site_id == ExternalSite::DBA) {
+        if ($this->s_preview && $this->site_id == ExternalSite::DBA) {
             $this->preview = $this->s_preview;
         }
 

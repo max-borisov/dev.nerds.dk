@@ -36,12 +36,12 @@ class MarketController extends AppController
         ]);*/
     }
 
-    /*public function actionView($id)
+    public function actionView($id)
     {
-        $news = News::find()->where('id = :id', [':id' => $id])->one();
-        if (!$news) {
-            $this->redirect('/news');
+        $item = Item::find()->where('id = :id', [':id' => $id])->one();
+        if (!$item) {
+            $this->redirect('/market');
         }
-        return $this->render('view', ['news' => $news]);
-    }*/
+        return $this->render('view', ['data' => $item]);
+    }
 }
