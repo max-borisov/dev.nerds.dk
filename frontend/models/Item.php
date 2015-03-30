@@ -87,6 +87,21 @@ class Item extends ActiveRecord
         return 'item';
     }
 
+    public function queryAll($keywords, $category, $priceMin, $priceMax)
+    {
+        $category = (int)$category;
+        $priceMin = (float)$priceMin;
+        $priceMax = (float)$priceMax;
+        $columns = 'id, title, price, s_date, created_at, category_id';
+        $query = self::find()->select($columns);
+        $query->where('1=1');
+        $query->andFilterWhere(['category_id' => $category]);
+        $query->filterWhere(['like', 'keywords', $keywords]);
+        $query->filterWhere(['between', 'price', $priceMin, $priceMax]);
+//        $query->with('category', 'adType');
+        return $query->orderBy('s_date DESC, created_at DESC');
+    }
+
     /**
      * @inheritdoc
      */

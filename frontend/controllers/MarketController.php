@@ -4,36 +4,35 @@ namespace frontend\controllers;
 
 use frontend\components\HelperBase;
 
-use frontend\models\Item;
 use Yii;
 use yii\data\Pagination;
+use frontend\models\Item;
+use frontend\models\TopCategory;
 
 class MarketController extends AppController
 {
     public function actionIndex()
     {
-        $data = Item::find()->select('id, title, price, s_date, created_at')->with('category', 'adType')->orderBy('created_at ASC')->limit(10)->all();
-//        HelperBase::dump($data);
-
-        return $this->render('index', ['data' => $data]);
-
-        /*$news = new News();
-        $newsCategories = NewsCategory::getDropDownList();
+        $itemsCategories = TopCategory::getDropDownList();
         $filterKeywords = Yii::$app->request->get('filter');
+        $priceMin = Yii::$app->request->get('price-min');
+        $priceMax = Yii::$app->request->get('price-max');
         $filterCategory = Yii::$app->request->get('category');
-        $query = $news->queryAll($filterKeywords, $filterCategory);
+        $query = (new Item)->queryAll($filterKeywords, $filterCategory, $priceMin, $priceMax);
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count()]);
         $data = $query->offset($pages->offset)
-            ->limit($pages->limit)
             ->all();
+
         return $this->render('index', [
             'data'              => $data,
             'pages'             => $pages,
-            'newsCategories'    => $newsCategories,
+            'itemsCategories'   => $itemsCategories,
             'filterKeywords'    => $filterKeywords,
             'filterCategory'    => $filterCategory,
-        ]);*/
+            'priceMin'          => $priceMin,
+            'priceMax'          => $priceMax,
+        ]);
     }
 
     public function actionView($id)

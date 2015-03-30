@@ -1,8 +1,19 @@
 <?php
 /* @var $this yii\web\View */
-
+/* @var $item frontend\models\Item */
 ?>
-<div class="row img-row margin-bottom">
+<?php if (!empty($item->preview)) { ?>
+<div class="row">
+    <div class="row img-row margin-bottom">
+        <div class="col-sm-3">
+            <a href="<?= $item->preview ?>" data-toggle="lightbox" data-gallery="global-gallery" data-parent=".img-row" data-footer="Item description">
+                <img alt="product description" src="<?= $item->preview ?>" data-src="<?= $item->preview ?>" class="img-responsive">
+            </a>
+    </div>
+</div>
+<?php } ?>
+
+<!--<div class="row img-row margin-bottom">
     <div class="col-sm-3">
         <a href="images/img07.jpg" data-toggle="lightbox" data-gallery="global-gallery" data-parent=".img-row" data-footer="Item description">
             <img alt="product description" src="images/img07.jpg" data-src="images/img07.jpg" class="img-responsive">
@@ -18,4 +29,4 @@
             <img alt="product description" src="images/img07_2.jpg" data-src="images/img07_2.jpg" class="img-responsive">
         </a>
     </div>
-</div>
+</div>-->

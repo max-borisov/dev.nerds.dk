@@ -4,7 +4,14 @@
 $this->title = 'Market';
 ?>
 <h1>Nyheder</h1>
-<?= $this->render('filter-form') ?>
+<?= $this->render('filter-form', [
+    'itemsCategories'   => $itemsCategories,
+    'filterKeywords'    => $filterKeywords,
+    'filterCategory'    => $filterCategory,
+    'priceMin'          => $priceMin,
+    'priceMax'          => $priceMax,
+]) ?>
+<?= $this->render('../shared/link-pager', ['pages' => $pages]) ?>
 <div class="table-responsive">
     <table class="table table-hover table-striped marketplace-table">
         <thead class="blue-box">
@@ -23,7 +30,7 @@ $this->title = 'Market';
             echo $this->render('_item', ['item' => $item]);
         }
         ?>
-
         </tbody>
     </table>
 </div>
+<?= $this->render('../shared/link-pager', ['pages' => $pages]) ?>
