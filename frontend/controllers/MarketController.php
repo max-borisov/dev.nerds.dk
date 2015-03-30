@@ -21,7 +21,9 @@ class MarketController extends AppController
         $query = (new Item)->queryAll($filterKeywords, $filterCategory, $priceMin, $priceMax);
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count()]);
-        $data = $query->offset($pages->offset)
+        $data = $query
+            ->offset($pages->offset)
+            ->limit($pages->limit)
             ->all();
 
         return $this->render('index', [

@@ -4,10 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use frontend\models\ItemCategory;
-//use frontend\models\ItemPhoto;
 use frontend\components\HelperBase;
-//use frontend\components\HelperMarketPlace;
-use frontend\components\HelperUser;
 use yii\base\Exception;
 
 /**
@@ -79,6 +76,11 @@ class Item extends ActiveRecord
     public $preview;
     public $search_text;
 
+    public $category_title;
+    public $top_category_id;
+    public $top_category_title;
+    public $ad_type_title;
+
     /**
      * @inheritdoc
      */
@@ -92,14 +94,23 @@ class Item extends ActiveRecord
         $category = (int)$category;
         $priceMin = (float)$priceMin;
         $priceMax = (float)$priceMax;
-        $columns = 'id, title, price, s_date, created_at, category_id';
+        $columns = 'item.id, item.title, price, s_date, item.created_at, item.category_id as category_id, item_category.title as category_title, top_category.id as top_category_id, top_category.title as top_category_title, ad_type.title as ad_type_title, item.s_preview, item.site_id';
         $query = self::find()->select($columns);
         $query->where('1=1');
-        $query->andFilterWhere(['category_id' => $category]);
-        $query->filterWhere(['like', 'keywords', $keywords]);
-        $query->filterWhere(['between', 'price', $priceMin, $priceMax]);
-//        $query->with('category', 'adType');
-        return $query->orderBy('s_date DESC, created_at DESC');
+        $query->innerJoin('ad_type', 'ad_type.id = item.ad_type_id');
+        $query->leftJoin('item_category', 'item_category.id = item.category_id');
+        $query->leftJoin('top_category', 'item_category.parent_id = top_category.id');
+        if ($category) {
+            $query->andWhere('top_category.id = :top_category_id', [':top_category_id' => $category]);
+        }
+        $query->andFilterWhere(['like', 'keywords', $keywords]);
+        if ($priceMin) {
+            $query->andWhere('price >= :price_min', [':price_min' => $priceMin]);
+        }
+        if ($priceMax) {
+            $query->andWhere('price <= :price_max', [':price_max' => $priceMax]);
+        }
+        return $query->orderBy('item.s_date DESC, item.created_at DESC');
     }
 
     /**

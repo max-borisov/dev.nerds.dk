@@ -8,9 +8,9 @@ use frontend\components\HelperBase;
 $itemUrl = Url::to('/market/' . $item->id);
 ?>
 <tr>
-    <td align="center">S</td>
+    <td align="center"><?= substr($item->ad_type_title, 0, 1) ?></td>
     <td><?= Html::a($item->title, $itemUrl) ?></td>
-    <td><?= Html::encode($item->category['title']) ?></td>
+    <td><?= $item->top_category_title, '<br><br>', $item->category_title ?></td>
     <td align="right"><?= $item->price ?></td>
     <td align="right"><?= HelperBase::formatPostDate($item->s_date) ?></td>
     <td>

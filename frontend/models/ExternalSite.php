@@ -10,7 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $title
  */
-class ExternalSite extends \yii\db\ActiveRecord
+class ExternalSite extends ActiveRecord
 {
     const HIFI4ALL  = 1;
     const RECORDERE = 2;
