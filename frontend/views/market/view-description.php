@@ -6,5 +6,5 @@ use yii\helpers\Html;
 <p>
     <strong>Annoncetekst:</strong>
     <br>
-    <?= Html::encode($item->description) ?>
+    <?= $item->description ?>
 </p>
