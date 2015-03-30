@@ -3,7 +3,7 @@
 namespace frontend\models;
 
 use Yii;
-use frontend\models\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "top_category".
@@ -33,6 +33,12 @@ class TopCategory extends ActiveRecord
     public static function tableName()
     {
         return 'top_category';
+    }
+
+    public static function getDropDownList()
+    {
+        $list = self::find()->select('id, title')->orderBy('id ASC')->asArray()->all();
+        return ArrayHelper::map($list, 'id', 'title');
     }
 
     /**
