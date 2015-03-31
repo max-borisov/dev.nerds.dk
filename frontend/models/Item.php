@@ -38,7 +38,7 @@ use yii\base\Exception;
  * @property string $s_warranty
  * @property string $s_package
  * @property string $s_delivery
- * @property string $s_akn
+ * @property string $s_invoice
  * @property string $s_manual
  * @property string $s_expires
  * @property string $s_brand

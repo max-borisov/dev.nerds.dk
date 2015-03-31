@@ -11,8 +11,9 @@ $this->title = 'Market';
     'priceMin'          => $priceMin,
     'priceMax'          => $priceMax,
 ]) ?>
+<?= $this->render('../shared/records-count', ['count' => $pages->totalCount]) ?>
 <?= $this->render('../shared/link-pager', ['pages' => $pages]) ?>
-<div class="table-responsive">
+    <div class="table-responsive">
     <table class="table table-hover table-striped marketplace-table">
         <thead class="blue-box">
         <tr>

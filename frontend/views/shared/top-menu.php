@@ -7,67 +7,67 @@ use yii\helpers\Url;
         <li class="black">
             <div class="item-holder">
                 <a href="#">Forside</a>
-                <ul>
+                <!--<ul>
                     <li><a href="#">link 1</a></li>
                     <li><a href="#">link 2</a></li>
                     <li><a href="#">link 3</a></li>
                     <li><a href="#">link 4</a></li>
-                </ul>
+                </ul>-->
             </div>
         </li>
         <li class="green">
             <div class="item-holder">
                 <a href="<?= Url::to('/news') ?>">Nyheder</a>
-                <ul>
+                <!--<ul>
                     <li><a href="#">link 1</a></li>
                     <li><a href="#">link 2</a></li>
                     <li><a href="#">link 3</a></li>
                     <li><a href="#">link 4</a></li>
-                </ul>
+                </ul>-->
             </div>
         </li>
         <li class="purple">
             <div class="item-holder">
                 <a href="<?= Url::to('/articles') ?>">Artikler</a>
-                <ul>
+                <!--<ul>
                     <li><a href="#">link 1</a></li>
                     <li><a href="#">link 2</a></li>
                     <li><a href="#">link 3</a></li>
                     <li><a href="#">link 4</a></li>
-                </ul>
+                </ul>-->
             </div>
         </li>
         <li class="yellow">
             <div class="item-holder">
                 <a href="#">Anmeldelser</a>
-                <ul>
+                <!--<ul>
                     <li><a href="#">link 1</a></li>
                     <li><a href="#">link 2</a></li>
                     <li><a href="#">link 3</a></li>
                     <li><a href="#">link 4</a></li>
-                </ul>
+                </ul>-->
             </div>
         </li>
         <li class="red">
             <div class="item-holder">
                 <a href="<?= Url::to('/market') ?>">Markedspladsen</a>
-                <ul>
+                <!--<ul>
                     <li><a href="#">link 1</a></li>
                     <li><a href="#">link 2</a></li>
                     <li><a href="#">link 3</a></li>
                     <li><a href="#">link 4</a></li>
-                </ul>
+                </ul>-->
             </div>
         </li>
         <li class="green">
             <div class="item-holder">
                 <a href="#">Forum</a>
-                <ul>
+                <!--<ul>
                     <li><a href="#">link 1</a></li>
                     <li><a href="#">link 2</a></li>
                     <li><a href="#">link 3</a></li>
                     <li><a href="#">link 4</a></li>
-                </ul>
+                </ul>-->
             </div>
         </li>
         <li class="purple"><a href="#">Chatten</a></li>
