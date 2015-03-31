@@ -7,8 +7,6 @@
     <article class="col-sm-9">
         <?= $content ?>
     </article>
-    <!-- aside begin -->
     <?= $this->render('../shared/aside-right') ?>
-    <!-- aside end -->
 </div>
 <?php $this->endContent(); ?>
