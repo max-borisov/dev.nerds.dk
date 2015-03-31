@@ -19,8 +19,8 @@ if ($item->s_manual) {
     $manual = $item->manual ? 'Ja' : 'Nej';
 }
 
-if ($item->s_akn) {
-    $invoice = $item->s_akn;
+if ($item->s_invoice) {
+    $invoice = $item->s_invoice;
 } else {
     $invoice = $item->invoice ? 'Ja' : 'Nej';
 }

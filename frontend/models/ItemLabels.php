@@ -28,7 +28,7 @@ return [
     's_package' => 'Package:',
     's_delivery' => 'Delivery:',
     's_manual' => 'Manual:',
-    's_akn' => 'Receipt:',
+    's_invoice' => 'Invoice:',
     's_expires' => 'Expires:',
 
     's_brand'       => 'Brand:',

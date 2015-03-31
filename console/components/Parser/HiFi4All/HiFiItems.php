@@ -211,7 +211,7 @@ class HiFiItems extends Base
         $item->s_warranty   = $data['info']['warranty'];
         $item->s_package    = $data['info']['package'];
         $item->s_delivery   = $data['info']['delivery'];
-        $item->s_akn        = $data['info']['ack'];
+        $item->s_invoice    = $data['info']['ack'];
         $item->s_manual     = $data['info']['manual'];
         $item->s_expires    = $data['info']['expires'];
 
