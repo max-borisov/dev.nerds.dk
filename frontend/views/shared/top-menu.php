@@ -6,7 +6,7 @@ use yii\helpers\Url;
     <ul>
         <li class="black">
             <div class="item-holder">
-                <a href="#">Forside</a>
+                <a href="<?= Url::to('/') ?>">Forside</a>
                 <!--<ul>
                     <li><a href="#">link 1</a></li>
                     <li><a href="#">link 2</a></li>

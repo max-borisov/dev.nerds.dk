@@ -11,7 +11,7 @@ return [
     'language' => 'dk',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'defaultRoute' => 'article/index',
+    'defaultRoute' => 'front/index',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'view' => [
