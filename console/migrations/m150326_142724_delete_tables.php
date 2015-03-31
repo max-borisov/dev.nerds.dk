@@ -7,8 +7,8 @@ class m150326_142724_delete_tables extends Migration
 {
     public function safeUp()
     {
-        $this->dropTable('item_catalog');
-        $this->dropTable('item_dba');
+//        $this->dropTable('item_catalog');
+//        $this->dropTable('item_dba');
     }
     
     public function safeDown()
