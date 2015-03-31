@@ -1,6 +1,8 @@
 <?php
 /* @var $this \yii\web\View */
 /* @var $content string */
+
+use frontend\widgets\ForumWidget;
 ?>
 <?php $this->beginContent('@app/views/layouts/base.php'); ?>
 <div class="row form-group">
@@ -111,7 +113,7 @@
     <!-- forum-box begin -->
     <div class="col-sm-3">
         <span class="hor-line">&nbsp;</span>
-        <?= $this->render('../shared/forum-box') ?>
+        <?= ForumWidget::widget() ?>
     </div>
     <!-- forum-box end -->
 </div>
