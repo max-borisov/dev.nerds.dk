@@ -574,4 +574,19 @@ hr {
     outline: none;
   }
 }
+dl {
+  overflow: hidden;
+  dt {
+    float: left;
+    margin: 0 8px 4px 0;
+    clear: left;
+  }
+  dd {
+    float: left;
+    margin: 0 0 4px;
+  }
+}
+.alert, form {
+  margin: 15px 0;
+}
 @import "media";
