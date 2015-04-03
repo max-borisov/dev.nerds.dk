@@ -9,12 +9,6 @@ class MarketWidget extends Widget
 {
     public $limit = 12;
 
-    public function init()
-    {
-        parent::init();
-
-    }
-
     public function run()
     {
         $items = Item::find()
