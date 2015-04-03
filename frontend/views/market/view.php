@@ -8,6 +8,7 @@
 <?= $this->render('view-images', ['item' => $item]) ?>
 <hr>
 <?= $this->render('view-other-info', ['item' => $item]) ?>
+<hr>
 <?= $this->render('view-contact-ad') ?>
 
 
