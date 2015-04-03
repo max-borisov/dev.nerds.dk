@@ -3,6 +3,8 @@
 /* @var $content string */
 
 use frontend\widgets\ForumWidget;
+use frontend\widgets\ReviewsWidget;
+use frontend\widgets\NewsWidget;
 ?>
 <?php $this->beginContent('@app/views/layouts/base.php'); ?>
 <div class="row form-group">
@@ -51,40 +53,7 @@ use frontend\widgets\ForumWidget;
         <div class="row">
             <div class="col-xs-8">
                 <span class="hor-line">&nbsp;</span>
-                <h2>artikler <span class="glyphicon glyphicon-pencil"></span></h2>
-                <!-- news-list begin -->
-                <div class="news-list">
-                    <article class="yellow-box">
-                        <a href="#"><img class="full-width" src="images/news-img01.jpg" alt=""/></a>
-                        <section class="padding-add">
-                            <h3><a href="#">Hifi &amp; Surround 2014</a></h3>
-                            <p>
-                                <a href="#">Redaktionen var traditionen tro med på årets største hifimesse, og vi bringer her en grundig gennemgang.</a>
-                            </p>
-                        </section>
-                    </article>
-                    <span class="hor-line">&nbsp;</span>
-                    <article class="green-box">
-                        <a href="#"><img class="full-width" src="images/news-img02.jpg" alt=""/></a>
-                        <section class="padding-add">
-                            <h3><a href="#">JJ Teknik / AV Centrum</a></h3>
-                            <p>
-                                <a href="#">Vi tog til Farum og besøgte ikke bare landets Zingali og Xindak importør, men også en af de mest kendte hifi-værksteder.</a>
-                            </p>
-                        </section>
-                    </article>
-                    <span class="hor-line">&nbsp;</span>
-                    <article class="blue-box">
-                        <a href="#"><img class="full-width" src="images/news-img03.jpg" alt=""/></a>
-                        <section class="padding-add">
-                            <h3><a href="#">Lancering af Audiovectors SR serie</a></h3>
-                            <p>
-                                <a href="#">Vi var med da Audiovector Lancerede deres nye SR serie</a>
-                            </p>
-                        </section>
-                    </article>
-                </div>
-                <!-- news-list end -->
+                <?= NewsWidget::widget() ?>
             </div>
             <div class="col-xs-4">
                 <span class="hor-line">&nbsp;</span>
@@ -117,100 +86,7 @@ use frontend\widgets\ForumWidget;
     </div>
     <!-- forum-box end -->
 </div>
-<div class="row">
-    <div class="col-sm-3">
-
-    </div>
-    <div class="col-sm-6">
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <!-- carousel-box begin -->
-                <div id="carousel-01" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-01" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-01" data-slide-to="1"></li>
-                        <li data-target="#carousel-01" data-slide-to="2"></li>
-                        <li data-target="#carousel-01" data-slide-to="3"></li>
-                    </ol>
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <a class="test-link" data-footer="Item01 description" data-parent="#carousel-01" data-gallery="global-gallery" data-toggle="lightbox"  href="images/slide-img01.jpg">
-                                <img class="img-responsive" data-src="images/slide-img01.jpg" src="images/slide-img01.jpg" alt="product description">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a data-footer="Item02 description" data-parent="#carousel-01" data-gallery="global-gallery" data-toggle="lightbox"  href="images/slide-img02.jpg">
-                                <img class="img-responsive" data-src="images/slide-img02.jpg" src="images/slide-img02.jpg" alt="product description">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a data-footer="Item03 description" data-parent="#carousel-01" data-gallery="global-gallery" data-toggle="lightbox"  href="images/slide-img03.jpg">
-                                <img class="img-responsive" data-src="images/slide-img03.jpg" src="images/slide-img03.jpg" alt="product description">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a data-footer="Item04 description" data-parent="#carousel-01" data-gallery="global-gallery" data-toggle="lightbox"  href="images/slide-img04.jpg">
-                                <img class="img-responsive" data-src="images/slide-img04.jpg" src="images/slide-img03.jpg" alt="product description">
-                            </a>
-                        </div>
-                    </div>
-                    <a class="left carousel-control" href="#carousel-01" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-01" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-                <!-- carousel-box end -->
-            </div>
-            <div class="col-sm-6 form-group">
-                <!-- carousel-box begin -->
-                <div id="carousel-02" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-02" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-02" data-slide-to="1"></li>
-                        <li data-target="#carousel-02" data-slide-to="2"></li>
-                        <li data-target="#carousel-02" data-slide-to="3"></li>
-                    </ol>
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <a data-footer="Item05 description" data-parent="#carousel-02" data-gallery="global-gallery" data-toggle="lightbox"  href="images/slide-img05.jpg">
-                                <img class="img-responsive" data-src="images/slide-img05.jpg" src="images/slide-img05.jpg" alt="product description">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a data-footer="Item06 description" data-parent="#carousel-02" data-gallery="global-gallery" data-toggle="lightbox"  href="images/slide-img06.jpg">
-                                <img class="img-responsive" data-src="images/slide-img06.jpg" src="images/slide-img06.jpg" alt="product description">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a data-footer="Item07 description" data-parent="#carousel-02" data-gallery="global-gallery" data-toggle="lightbox"  href="images/slide-img07.jpg">
-                                <img class="img-responsive" data-src="images/slide-img07.jpg" src="images/slide-img07.jpg" alt="product description">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a data-footer="Item08 description" data-parent="#carousel-02" data-gallery="global-gallery" data-toggle="lightbox"  href="images/slide-img08.jpg">
-                                <img class="img-responsive" data-src="images/slide-img08.jpg" src="images/slide-img08.jpg" alt="product description">
-                            </a>
-                        </div>
-                    </div>
-                    <a class="left carousel-control" href="#carousel-02" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-02" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-                <!-- carousel-box end -->
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3"></div>
-</div>
+<?= $this->render('partial/_carousel') ?>
 <div class="row form-group">
     <div class="col-sm-3">
         <div class="banner form-group">
@@ -224,40 +100,7 @@ use frontend\widgets\ForumWidget;
         <div class="row">
             <div class="col-xs-8">
                 <span class="hor-line">&nbsp;</span>
-                <h2>Anmeldelser <span class="glyphicon glyphicon-edit"></span></h2>
-                <!-- news-list begin -->
-                <div class="news-list">
-                    <article class="black-box">
-                        <a href="#"><img class="full-width" src="images/news-img06.jpg" alt=""/></a>
-                        <section class="padding-add">
-                            <h3><a href="#">Musical Fidelity V90-DAC </a></h3>
-                            <p>
-                                <a href="#">Årets køb..</a>
-                            </p>
-                        </section>
-                    </article>
-                    <span class="hor-line">&nbsp;</span>
-                    <article class="yellow-box">
-                        <a href="#"><img class="full-width" src="images/news-img07.jpg" alt=""/></a>
-                        <section class="padding-add">
-                            <h3><a href="#">GDA 125</a></h3>
-                            <p>
-                                <a href="#">Vi fortsætter sereien "Stor lyd i små rum" med GDA 125 som producenten selv kalder "verdens bedste to-vejs".</a>
-                            </p>
-                        </section>
-                    </article>
-                    <span class="hor-line">&nbsp;</span>
-                    <article class="red-box">
-                        <a href="#"><img class="full-width" src="images/news-img08.jpg" alt=""/></a>
-                        <section class="padding-add">
-                            <h3><a href="#">Zingali Home Monitor 2.8 </a></h3>
-                            <p>
-                                <a href="#">Stor lyd i små rum - Italienske hornhøjttalere der er til at betale, og som kan være i de fleste stuer</a>
-                            </p>
-                        </section>
-                    </article>
-                </div>
-                <!-- news-list end -->
+                <?= ReviewsWidget::widget() ?>
             </div>
             <div class="col-xs-4">
                 <span class="hor-line">&nbsp;</span>
