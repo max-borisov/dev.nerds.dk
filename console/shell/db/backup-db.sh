@@ -1,16 +1,22 @@
 #!/bin/bash
 
-CHARSET=utf8
-DBNAME=nerds_dev
-HOST=localhost
-USER=$NERDS_DB_USER
-PASSWD=$NERDS_DB_PASSWORD
+if [ "$1" = "" ]
+then
+    echo 'Please, set database name.'
+    exit
+fi
 
 if [ "$NERDS_DB_USER" = "" ] || [ "$NERDS_DB_PASSWORD" = "" ]
 then
     echo 'Please, check ENV variables for DB user and password.'
     exit
 fi
+
+CHARSET=utf8
+DBNAME=$1
+HOST=localhost
+USER=$NERDS_DB_USER
+PASSWD=$NERDS_DB_PASSWORD
 
 #if [ "$1" = "dev" ]
 #then
