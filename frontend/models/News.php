@@ -22,6 +22,8 @@ use frontend\components\NewsReviewsBehavior;
  */
 class News extends ActiveRecord
 {
+    public $preview;
+
     /**
      * @inheritdoc
      */
@@ -49,6 +51,19 @@ class News extends ActiveRecord
             $query->filterWhere(['like', 'keywords', $filter]);
         }
         return $query->orderBy('post_date DESC');
+    }
+
+    public function afterFind()
+    {
+        parent::afterFind();
+
+        $this->preview = '';
+        $post = strip_tags($this->post, '<img>');
+        $pattern = '|src="([^"]+)"|';
+        preg_match($pattern, $post, $matches);
+        if ($matches[1]) {
+            $this->preview = $matches[1];
+        }
     }
 
     /**
