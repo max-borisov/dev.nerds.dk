@@ -31,4 +31,4 @@ phpunit.phar
 
 backup/
 
-.sass-cache/
+frontend/scss/.sass-cache
