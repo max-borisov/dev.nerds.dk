@@ -3,7 +3,6 @@
 namespace frontend\widgets;
 
 use yii\base\Widget;
-//use frontend\models\;
 
 class ReviewsWidget extends Widget
 {

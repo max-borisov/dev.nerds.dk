@@ -2,7 +2,6 @@
 
 namespace frontend\widgets;
 
-use frontend\components\HelperBase;
 use yii\base\Widget;
 use frontend\models\News;
 
