@@ -7,31 +7,43 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-frontend',
-    'language' => 'dk',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
-    'defaultRoute' => 'front/index',
+    'id'                  => 'app-frontend',
+    'language'            => 'dk',
+    'basePath'            => dirname(__DIR__),
+    'bootstrap'           => ['log'],
+    'defaultRoute'        => 'front/index',
     'controllerNamespace' => 'frontend\controllers',
-    'components' => [
+    'components'          => [
         'view' => [
             'title' => 'Hello'
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass'   => 'common\models\User',
             'enableAutoLogin' => true,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class'  => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
             ],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+        ],
+        'imageProcessor' => [
+            'class'  => 'yii\image\ImageDriver',
+            'driver' => 'GD',  //GD or Imagick
+        ],
+        'image' => [
+            'class'          => 'frontend\components\Image',
+            'originalFolder' => '/original/',
+            'thumbFolder'    => '/thumb/',
+            'basePath'       => '@webroot/images',
+            'baseUrl'        => '@web/images',
+            'quality'        => 100,
         ],
         'urlManager' => require(__DIR__ . '/routes.php'),
     ],

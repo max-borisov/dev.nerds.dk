@@ -28,4 +28,11 @@ class SandboxController extends Controller
         require_once Yii::getAlias('@console') . '/components/Parser/Dba/DbaItems.php';
         (new DbaItems())->run();
     }
+
+    public function actionImages()
+    {
+        $res = Yii::$app->image->original('646109098976760.jpg');
+        $res = Yii::$app->image->thumb('646109098976760.jpg', '500x450');
+        HelperBase::dump($res);
+    }
 }
