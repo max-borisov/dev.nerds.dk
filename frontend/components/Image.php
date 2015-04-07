@@ -5,23 +5,27 @@ use Yii;
 use yii\base\Component;
 use yii\base\Exception;
 use yii\base\InvalidParamException;
-use frontend\components\HelperBase;
 
 class Image extends Component
 {
     public $originalFolder;
     public $thumbFolder;
-    public $basePath;
     public $baseUrl;
+    public $baseUrlOriginal;
+    public $baseUrlThumb;
     public $quality;
+
+    private $_imageUrl;
+    private $_imagePath;
 
     public function init()
     {
         $imagesConf = HelperBase::getParam('images');
-        $this->originalFolder = $imagesConf['originalFolder'];
-        $this->thumbFolder = $imagesConf['thumbFolder'];
+        $this->originalFolder = $imagesConf['pathToOriginal'];
+        $this->thumbFolder = $imagesConf['pathToThumb'];
         $this->baseUrl = $imagesConf['baseUrl'];
-        $this->basePath = $imagesConf['basePath'];
+        $this->baseUrlOriginal = $imagesConf['baseUrlOriginal'];
+        $this->baseUrlThumb = $imagesConf['baseUrlThumb'];
     }
 
     public function original($imageName = '')
@@ -29,29 +33,53 @@ class Image extends Component
         $this->_checkImageNamePresence($imageName);
         $fullName = $this->_getFullPathToOriginalImage($imageName);
         if (!$this->_checkFileExistence($fullName)) return null;
-        return Yii::getAlias($this->baseUrl . $this->originalFolder . $imageName);
+        $this->_imagePath = Yii::getAlias($this->originalFolder . $imageName);
+        $this->_imageUrl = Yii::getAlias($this->baseUrlOriginal . $imageName);
+        return $this;
     }
 
-    public function thumb($imageName = '', $dimensions = '')
+    public function thumb($srcImageName = '', $dimensions = '', $action = 'resize')
     {
-        $this->_checkImageNamePresence($imageName);
+        $this->_checkImageNamePresence($srcImageName);
+        $this->_validateAction($action);
         $dimensionsHash = $this->_getImageDimensions($dimensions);
-        $imageNameWithSuffix = str_replace('x', '_', $dimensions) . '_' . $imageName;
-        $fullThumbName = Yii::getAlias($this->basePath . $this->thumbFolder . $imageNameWithSuffix);
-        $fullOriginalName = $this->_getFullPathToOriginalImage($imageName);
+        $thumbName = str_replace('x', '_', $dimensions) . '_' . $action[0] . '_' . $srcImageName;
+        $fullOriginalName = $this->_getFullPathToOriginalImage($srcImageName);
+        $fullThumbName = Yii::getAlias($this->thumbFolder . $thumbName);
         if (!$this->_checkFileExistence($fullThumbName)) {
             $image = Yii::$app->imageProcessor->load($fullOriginalName);
-            $image->resize($dimensionsHash['w'], $dimensionsHash['h'], $master = Yii\image\drivers\Image::WIDTH);
+            if ($action == 'resize') {
+                $image->resize($dimensionsHash['w'], $dimensionsHash['h'], $master = Yii\image\drivers\Image::WIDTH);
+            } else {
+                $offsetX = $offsetY = null;
+                if ($image->width >= $dimensionsHash['w'] && $image->height >= $dimensionsHash['h']) {
+                    $offsetX = round(($image->width - $dimensionsHash['w']) / 2);
+                    $offsetY = round(($image->height - $dimensionsHash['h']) / 2);
+                }
+                $image->crop($dimensionsHash['w'], $dimensionsHash['h'], $offsetX, $offsetY);
+            }
             if (!$image->save($fullThumbName, $this->quality)) {
                 throw new Exception('Image thumb could not be saved.');
             }
         }
-        return Yii::getAlias($this->baseUrl . $this->thumbFolder . $imageNameWithSuffix);
+        $this->_imagePath = $fullThumbName;
+        $this->_imageUrl = Yii::getAlias($this->baseUrlThumb . $thumbName);
+        return $this;
+    }
+
+    public function url()
+    {
+        return $this->_imageUrl;
+    }
+
+    public function path()
+    {
+        return $this->_imagePath;
     }
 
     private function _getFullPathToOriginalImage($fileName)
     {
-        return Yii::getAlias($this->basePath . $this->originalFolder . $fileName);
+        return Yii::getAlias($this->originalFolder . $fileName);
     }
 
     private function _checkFileExistence($fullName)
@@ -74,5 +102,13 @@ class Image extends Component
         $hash = [];
         list($hash['w'], $hash['h']) = explode('x', $dimensions);
         return $hash;
+    }
+
+    private function _validateAction($action)
+    {
+        $actions = ['crop', 'resize'];
+        if (!in_array($action, $actions)) {
+            throw new InvalidParamException('Incorrect action passed.');
+        }
     }
 }
