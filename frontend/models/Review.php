@@ -79,9 +79,6 @@ class Review extends ActiveRecord
             $post_short = HelperBase::makeShortText($post_short, HelperBase::getParam('shortArticleLength'));
         }
         $this->post_short = trim($post_short);
-        if (empty($this->preview)) {
-            $this->preview = HelperBase::getParam('articlePreviewPlaceholder');
-        }
     }
 
     /**
