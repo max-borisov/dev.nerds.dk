@@ -5,19 +5,25 @@ namespace console\controllers;
 use Yii;
 use yii\console\Controller;
 use frontend\models\News;
+use frontend\models\Review;
 use frontend\components\HelperBase;
 use yii\console\Exception;
 
 class PreviewController extends Controller
 {
-    public function actionNewsup()
+    public function actionUp($table)
     {
+        $this->_validateTableName($table);
         set_time_limit(0);
         $count = 0;
         $originalFolderPath = HelperBase::getParam('images')['basePathForOriginal'];
-        $news = News::find()->where("preview = ''")->all();
+        switch($table) {
+            case 'news'     : $finder = News::find(); break;
+            case 'review'   : $finder = Review::find(); break;
+        }
+        $rows = $finder->where("preview = ''")->all();
         /* @var $item \frontend\models\News */
-        foreach ($news as $item) {
+        foreach ($rows as $item) {
             $post = strip_tags($item->post, '<img>');
             $pattern = '/src="([^"]+)"/i';
             preg_match($pattern, $post, $matches);
@@ -29,8 +35,8 @@ class PreviewController extends Controller
                 if (!copy($previewSourceUrl, $copyPath)) {
                     throw new Exception('Image could not be copied. Url from: ' . $previewSourceUrl . '. Dst: ' . $copyPath);
                 }
-                $sql = 'UPDATE news
-                    SET
+                $sql = 'UPDATE ' . $table .
+                    ' SET
                         preview     = :preview,
                         updated_at  = UNIX_TIMESTAMP()
                     WHERE id = ' . $item->id;
@@ -46,17 +52,18 @@ class PreviewController extends Controller
                 usleep(500);
             }
             catch(\yii\base\ErrorException $e) {
-                
+
             }
         }
         echo "Updated rows - ", $count, "\r\n";
         exit(Controller::EXIT_CODE_NORMAL);
     }
 
-    public function actionNewsdown()
+    public function actionDown($table)
     {
-        $sql = 'UPDATE news
-                SET
+        $this->_validateTableName($table);
+        $sql =  'UPDATE ' . $table .
+                ' SET
                     preview     = "",
                     updated_at  = UNIX_TIMESTAMP()
                 WHERE
@@ -66,6 +73,14 @@ class PreviewController extends Controller
             ->execute();
         echo $rows, " have been updated\r\n";
         exit(Controller::EXIT_CODE_NORMAL);
+    }
+
+    private function _validateTableName($table)
+    {
+        $data = ['news' ,'review'];
+        if (!in_array($table, $data)) {
+            throw new Exception('Incorrect table name given.');
+        }
     }
 
     private function _getUniqueId($prefix)
