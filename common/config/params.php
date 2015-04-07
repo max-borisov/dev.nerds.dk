@@ -5,11 +5,10 @@ return [
     'user.passwordResetTokenExpire' => 3600,
 
     'images' => [
-        'originalFolder'      => '/original/',
-        'thumbFolder'         => '/thumb/',
-        'basePath'            => '@webroot/images',
-        'basePathForOriginal' => '@webroot/images/original',
-        'basePathForThumb'    => '@webroot/images/thumb',
-        'baseUrl'             => '@web/images',
+        'pathToOriginal'  => '@webroot/images/original/',
+        'pathToThumb'     => '@webroot/images/thumb/',
+        'baseUrl'         => '@web/images/',
+        'baseUrlOriginal' => '@web/images/original/',
+        'baseUrlThumb'    => '@web/images/thumb/',
     ],
 ];
