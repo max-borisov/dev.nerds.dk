@@ -6,6 +6,7 @@ use frontend\models\Item;
 use Yii;
 use yii\base\ErrorException;
 use yii\db\Exception;
+use yii\helpers\Html;
 use yii\web\Controller;
 use frontend\models\Review;
 use frontend\components\HelperBase;
@@ -31,8 +32,12 @@ class SandboxController extends Controller
 
     public function actionImages()
     {
-        $res = Yii::$app->image->original('646109098976760.jpg');
-        $res = Yii::$app->image->thumb('646109098976760.jpg', '500x450');
+        $res = Yii::$app->image->original('055239df7c3924.jpg')->path();
+//        HelperBase::dump($res, true);
+
+//        $res = Yii::$app->image->thumb('055239df7c3924.jpg', '200x52', 'resize');
+        $res = Yii::$app->image->thumb('055239df7c3924.jpg', '200x52', 'crop')->path();
+//        echo Html::img($res);
         HelperBase::dump($res);
     }
 }
