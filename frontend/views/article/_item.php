@@ -4,12 +4,17 @@ use yii\helpers\Html;
 use frontend\components\HelperBase;
 
 $articleLink = Url::to('/articles/' . $item['id']);
+if ($item['preview']) {
+    $preview = Yii::$app->image->thumb($item['preview'], '200x52', 'crop')->url();
+} else {
+    $preview = Yii::$app->imagePlaceholder->get('200x52');
+}
 ?>
 <tr>
     <td><?= Html::a(
             Html::img(
-                $item['preview'],
-                ['class' => 'w-200', 'width' => '200', 'alt' => 'preview', 'title' => $item['title']]
+                $preview,
+                ['class' => 'w-200', 'alt' => $item['title'], 'title' => $item['title']]
             ),
             $articleLink) ?>
     </td>
