@@ -5,6 +5,7 @@ use Yii;
 use yii\base\Component;
 use yii\base\Exception;
 use yii\base\InvalidParamException;
+use frontend\components\HelperBase;
 
 class Image extends Component
 {
@@ -13,6 +14,15 @@ class Image extends Component
     public $basePath;
     public $baseUrl;
     public $quality;
+
+    public function init()
+    {
+        $imagesConf = HelperBase::getParam('images');
+        $this->originalFolder = $imagesConf['originalFolder'];
+        $this->thumbFolder = $imagesConf['thumbFolder'];
+        $this->baseUrl = $imagesConf['baseUrl'];
+        $this->basePath = $imagesConf['basePath'];
+    }
 
     public function original($imageName = '')
     {
