@@ -41,6 +41,9 @@ return [
             'class'   => 'frontend\components\Image',
             'quality' => 100,
         ],
+        'imagePlaceholder' => [
+            'class'   => 'frontend\components\ImagePlaceholder',
+        ],
         'urlManager' => require(__DIR__ . '/routes.php'),
     ],
     'params' => $params,
