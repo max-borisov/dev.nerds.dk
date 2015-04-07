@@ -38,12 +38,8 @@ return [
             'driver' => 'GD',  //GD or Imagick
         ],
         'image' => [
-            'class'          => 'frontend\components\Image',
-            'originalFolder' => '/original/',
-            'thumbFolder'    => '/thumb/',
-            'basePath'       => '@webroot/images',
-            'baseUrl'        => '@web/images',
-            'quality'        => 100,
+            'class'   => 'frontend\components\Image',
+            'quality' => 100,
         ],
         'urlManager' => require(__DIR__ . '/routes.php'),
     ],
