@@ -61,7 +61,7 @@ class News extends ActiveRecord
         $post = strip_tags($this->post, '<img>');
         $pattern = '|src="([^"]+)"|';
         preg_match($pattern, $post, $matches);
-        if ($matches[1]) {
+        if (!empty($matches[1])) {
             $this->preview = $matches[1];
         }
     }
