@@ -5,6 +5,8 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use frontend\components\HelperBase;
 
+$previewDimensions = '100x75';
+$preview = $item->resizePreview($item->preview, $previewDimensions);
 $itemUrl = Url::to('/market/' . $item->id);
 ?>
 <tr>
@@ -14,6 +16,10 @@ $itemUrl = Url::to('/market/' . $item->id);
     <td align="right"><?= $item->price ?></td>
     <td align="right"><?= HelperBase::formatPostDate($item->s_date) ?></td>
     <td>
-        <?= Html::a(Html::img($item->preview, ['class' => 'img-responsive']), $itemUrl, ['data-footer' => 'Image description', 'data-title' => $item->title, 'data-toggle' => 'lightbox']) ?>
+        <?= Html::a(
+            Html::img($preview, ['class' => 'img-responsive']),
+            $itemUrl,
+            ['data-footer' => 'Image description', 'data-title' => $item->title, 'data-toggle' => 'lightbox']
+        ) ?>
     </td>
 </tr>
