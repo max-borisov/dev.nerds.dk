@@ -194,7 +194,7 @@ class Item extends ActiveRecord
     {
         // Set preview for each item
         // Default(blank) preview
-        $this->preview = Yii::$app->imagePlaceholder->get('100x55');
+//        $this->preview = Yii::$app->imagePlaceholder->get('100x55');
 
         if ($this->s_preview && $this->site_id == ExternalSite::HIFI4ALL) {
             $this->preview = HelperBase::getParam('HiFi4AllPic') . '/' . $this->s_preview;
