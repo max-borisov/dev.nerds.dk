@@ -185,23 +185,8 @@ class Item extends ActiveRecord
 
     public function beforeSave($insert)
     {
-        if (!isset($this->user_id)) {
-            throw new Exception('User id cannot be blank.');
-        }
-
-        $keywordStack = [];
-        array_push($keywordStack, $this->title);
-        array_push($keywordStack, $this->description);
-        array_push($keywordStack, $this->s_model);
-        array_push($keywordStack, $this->s_producer);
-        array_push($keywordStack, $this->s_product);
-        array_push($keywordStack, $this->media_genre);
-        $keywords = implode(' ', $keywordStack);
-        $keywords = strip_tags($keywords);
-        $keywords = str_replace('&nbsp;', '', $keywords);
-        $keywords = preg_replace('/\s+/', ' ', $keywords);
-        $keywords = trim($keywords);
-        $this->keywords = $keywords;
+        $this->_validateUser();
+        $this->_setKeywords();
         return parent::beforeSave($insert);
     }
 
@@ -209,7 +194,7 @@ class Item extends ActiveRecord
     {
         // Set preview for each item
         // Default(blank) preview
-        $this->preview = Yii::$app->imagePlimagePlaceholder->get('100x55');
+        $this->preview = Yii::$app->imagePlaceholder->get('100x55');
 
         if ($this->s_preview && $this->site_id == ExternalSite::HIFI4ALL) {
             $this->preview = HelperBase::getParam('HiFi4AllPic') . '/' . $this->s_preview;
@@ -232,6 +217,28 @@ class Item extends ActiveRecord
             }
         }*/
         parent::afterFind();
+    }
+
+    private function _setKeywords()
+    {
+        $keywordStack = [];
+        array_push($keywordStack, $this->title);
+        array_push($keywordStack, $this->description);
+        array_push($keywordStack, $this->s_model);
+        array_push($keywordStack, $this->s_producer);
+        array_push($keywordStack, $this->s_product);
+        array_push($keywordStack, $this->media_genre);
+        $keywords = implode(' ', $keywordStack);
+        $keywords = strip_tags($keywords);
+        $keywords = str_replace('&nbsp;', '', $keywords);
+        $keywords = preg_replace('/\s+/', ' ', $keywords);
+        $keywords = trim($keywords);
+        $this->keywords = $keywords;
+    }
+
+    private function _validateUser()
+    {
+        if (empty($this->user_id)) throw new Exception('User id cannot be blank.');
     }
 
     /*public function beforeDelete()
