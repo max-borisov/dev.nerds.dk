@@ -16,7 +16,7 @@ class PreviewController extends Controller
         $this->_validateTableName($table);
         set_time_limit(0);
         $count = 0;
-        $originalFolderPath = HelperBase::getParam('images')['basePathForOriginal'];
+        $originalFolderPath = HelperBase::getParam('images')['pathToOriginal'];
         switch($table) {
             case 'news'     : $finder = News::find(); break;
             case 'review'   : $finder = Review::find(); break;
