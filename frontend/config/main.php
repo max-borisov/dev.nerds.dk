@@ -33,6 +33,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        // Composer yurkinx/yii2-image
         'imageProcessor' => [
             'class'  => 'yii\image\ImageDriver',
             'driver' => 'GD',  //GD or Imagick
