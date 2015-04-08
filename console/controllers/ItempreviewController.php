@@ -16,7 +16,11 @@ class ItempreviewController extends Controller
         set_time_limit(0);
         $count = 0;
         $originalFolderPath = HelperBase::getParam('images')['pathToOriginal'];
-        $rows = Item::find()->select('id, site_id, preview, s_preview, created_at')->where("preview = '' AND s_preview != ''")->asArray()->all();
+        $rows = Item::find()
+                ->select('id, site_id, preview, s_preview, created_at')
+                ->where("preview = '' AND s_preview != ''")
+                ->asArray()
+                ->all();
         foreach ($rows as $item) {
             $imageUrl = '';
             if ($item['site_id'] == ExternalSite::HIFI4ALL) {
@@ -26,6 +30,9 @@ class ItempreviewController extends Controller
             }
             if (!$imageUrl) continue;
 
+            if (strpos($imageUrl, '?') !== false) {
+                $imageUrl = substr_replace($imageUrl, '', strpos($imageUrl, '?'));
+            }
             $previewUniqueName = $this->_getUniqueId($item['created_at']) . '.' . $this->_getFileExtension($imageUrl);
             $copyPath = Yii::getAlias($originalFolderPath . '/' . $previewUniqueName);
             try {
