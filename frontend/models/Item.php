@@ -73,7 +73,6 @@ class Item extends ActiveRecord
 
     public $price_min;
     public $price_max;
-    public $preview;
     public $search_text;
 
     public $category_title;
@@ -94,7 +93,7 @@ class Item extends ActiveRecord
         $category = (int)$category;
         $priceMin = (float)$priceMin;
         $priceMax = (float)$priceMax;
-        $columns = 'item.id, item.title, price, s_date, item.created_at, item.category_id as category_id, item_category.title as category_title, top_category.id as top_category_id, top_category.title as top_category_title, ad_type.title as ad_type_title, item.s_preview, item.site_id';
+        $columns = 'item.id, item.title, price, s_date, item.created_at, item.category_id as category_id, item_category.title as category_title, top_category.id as top_category_id, top_category.title as top_category_title, ad_type.title as ad_type_title, item.preview, item.s_preview, item.site_id';
         $query = self::find()->select($columns);
         $query->where('1=1');
         $query->innerJoin('ad_type', 'ad_type.id = item.ad_type_id');
@@ -190,18 +189,26 @@ class Item extends ActiveRecord
         return parent::beforeSave($insert);
     }
 
+    public function resizePreview($previewName, $dimensions)
+    {
+        if (empty($previewName)) {
+            return Yii::$app->imagePlaceholder->get($dimensions);
+        }
+        return Yii::$app->image->thumb($previewName, $dimensions)->url();
+    }
+
     public function afterFind()
     {
         // Set preview for each item
         // Default(blank) preview
 //        $this->preview = Yii::$app->imagePlaceholder->get('100x55');
 
-        if ($this->s_preview && $this->site_id == ExternalSite::HIFI4ALL) {
+        /*if ($this->s_preview && $this->site_id == ExternalSite::HIFI4ALL) {
             $this->preview = HelperBase::getParam('HiFi4AllPic') . '/' . $this->s_preview;
         }
         if ($this->s_preview && $this->site_id == ExternalSite::DBA) {
             $this->preview = $this->s_preview;
-        }
+        }*/
 
         /*if (($photos = $this->photos) && is_array($photos)) {
             $photoName = $photos[0]->name;
