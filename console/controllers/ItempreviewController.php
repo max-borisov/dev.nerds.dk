@@ -17,6 +17,10 @@ class ItempreviewController extends Controller
         set_time_limit(0);
         $count = 0;
         $originalFolderPath = HelperBase::getParam('images')['pathToOriginal'];
+
+        // @todo remove
+        $originalFolderPath .= 'items/';
+
         /*$rows = Item::find()
                 ->select('id, site_id, preview, s_preview, created_at')
                 ->where("preview = '' AND s_preview != ''")
