@@ -9,6 +9,7 @@ use frontend\models\ExternalSite;
 use frontend\models\AdType;
 use frontend\models\Item;
 use common\models\User;
+use frontend\components\HelperBase;
 
 require_once __DIR__ . '/../Base.php';
 
@@ -145,7 +146,7 @@ class HiFiItems extends Base
         if (!$item->save(false)) {
             throw new Exception('Data could not be saved. Id ' . $data['site_id']);
         }
-        if ($item->s_preview) {
+        if ($item->s_preview && HelperBase::checkRemoteFileExistence($item->s_preview) == 200) {
             $path = Yii::$app->image->copy($item->s_preview, $item->created_at)->path();
             $item->preview = substr($path, strrpos($path, '/')+1);
             $item->save(false);

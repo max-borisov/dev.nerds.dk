@@ -44,7 +44,19 @@ class SandboxController extends Controller
 //        echo Html::img($res);
 //        HelperBase::dump($res);
 
-        $res = Yii::$app->image->copy('http://www.hifi4all.dk/ksb/pics/Wisdom%20M50%2011_1_resized2005.jpg', '11223344')->path();
-        HelperBase::dump($res);
+//        $res = Yii::$app->image->copy('http://www.hifi4all.dk/ksb/pics/Wisdom%20M50%2011_1_resized2005.jpg', '11223344')->path();
+//        HelperBase::dump($res);
+
+//        $url = 'http://www.hifi4all.dk/ksb/pics/dali%20107%201_1_resized2005.jpg';
+//        $url = 'http://www.hifi4all.dk/ksb/pics/b&amp;amp;w_2_resized2005.jpg';
+        $url = 'http://www.hifi4all.dk/content/articlefiles/3112-IMG_0550_1.jpg';
+//        HelperBase::dump(getimagesize($url));
+        /*$ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+        curl_exec($ch);
+        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);*/
+        $statusCode = HelperBase::checkRemoteFileExistence($url);
+        HelperBase::dump($statusCode);
     }
 }

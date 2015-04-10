@@ -129,4 +129,14 @@ class HelperBase extends Component
     {
         return date('d/m-Y', strtotime($date));
     }
+
+    public static function checkRemoteFileExistence($url)
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+        curl_exec($ch);
+        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        return $statusCode;
+    }
 }
