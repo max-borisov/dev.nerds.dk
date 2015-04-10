@@ -67,6 +67,17 @@ class Image extends Component
         return $this;
     }
 
+    public function copy($fromUrl, $dstName)
+    {
+        $previewName = $this->_getUniqueId($dstName) . '.' . $this->_getFileExtension($fromUrl);
+        $copyPath = Yii::getAlias($this->originalFolder . $previewName);
+        if (!copy($fromUrl, $copyPath)) {
+            throw new Exception('Image could not be copied. Url from: ' . $fromUrl . '. Dst: ' . $copyPath);
+        }
+        $this->_imagePath = $copyPath;
+        return $this;
+    }
+
     public function url()
     {
         return $this->_imageUrl;
@@ -110,5 +121,15 @@ class Image extends Component
         if (!in_array($action, $actions)) {
             throw new InvalidParamException('Incorrect action passed.');
         }
+    }
+
+    private function _getUniqueId($prefix)
+    {
+        return uniqid($prefix);
+    }
+
+    private function _getFileExtension($imageName)
+    {
+        return pathinfo($imageName, PATHINFO_EXTENSION);
     }
 }
