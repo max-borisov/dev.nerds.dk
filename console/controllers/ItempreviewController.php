@@ -4,6 +4,7 @@ namespace console\controllers;
 
 use Yii;
 use yii\console\Controller;
+use yii\db\Query;
 use frontend\models\Item;
 use frontend\models\ExternalSite;
 use frontend\components\HelperBase;
@@ -16,12 +17,18 @@ class ItempreviewController extends Controller
         set_time_limit(0);
         $count = 0;
         $originalFolderPath = HelperBase::getParam('images')['pathToOriginal'];
-        $rows = Item::find()
+        /*$rows = Item::find()
                 ->select('id, site_id, preview, s_preview, created_at')
                 ->where("preview = '' AND s_preview != ''")
                 ->asArray()
-                ->all();
-        foreach ($rows as $item) {
+                ->all();*/
+        $query =  (new Query())
+            ->from('item')
+            ->select('id, site_id, preview, s_preview, created_at')
+            ->where("preview = '' AND s_preview != ''");
+
+//        foreach ($rows as $item) {
+        foreach ($query->each() as $item) {
             $imageUrl = '';
             if ($item['site_id'] == ExternalSite::HIFI4ALL) {
                 $imageUrl = HelperBase::getParam('HiFi4AllPic') . '/' . $item['s_preview'];
