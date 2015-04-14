@@ -2,11 +2,13 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use frontend\components\HelperBase;
+use yii\base\Exception;
 
 $articleLink = Url::to('/articles/' . $item['id']);
-if ($item['preview']) {
+try {
+    if (!$item['preview']) throw new Exception('Preview name is empty');
     $preview = Yii::$app->image->thumb($item['preview'], '200x52', 'crop')->url();
-} else {
+} catch(Exception $e) {
     $preview = Yii::$app->imagePlaceholder->get('200x52');
 }
 ?>
