@@ -197,6 +197,14 @@ class Item extends ActiveRecord
         return Yii::$app->image->thumb($previewName, $dimensions)->url();
     }
 
+    public function originalPreview($previewName, $dimensions)
+    {
+        if (empty($previewName)) {
+            return Yii::$app->imagePlaceholder->get($dimensions);
+        }
+        return Yii::$app->image->original($previewName)->url();
+    }
+
     public function afterFind()
     {
         // Set preview for each item
