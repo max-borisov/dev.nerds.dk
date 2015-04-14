@@ -62,9 +62,9 @@ $extraParams = [
     <?php
     foreach ($mainParams as $label => $value) {
         echo <<<EEE
-        <li class="col-md-3">
-            <div class="pull-left"><strong>$label</strong></div>
-            <div class="pull-right"><span>$value</span></div>
+        <li class="col-md-6">
+            <div class="col-md-6 text-right"><strong>$label</strong></div>
+            <div class="col-md-6"><span>$value</span></div>
         </li>
 EEE;
     }
@@ -72,9 +72,9 @@ EEE;
     foreach ($extraParams as $label => $attribute) {
         if ($item->$attribute) {
             echo <<<EEE
-            <li class="col-md-3">
-                <div class="pull-left"><strong>$label</strong></div>
-                <div class="pull-right"><span>{$item->$attribute}</span></div>
+            <li class="col-md-6">
+                <div class="col-md-6 text-right"><strong>$label</strong></div>
+                <div class="col-md-6"><span>{$item->$attribute}</span></div>
             </li>
 EEE;
         }
