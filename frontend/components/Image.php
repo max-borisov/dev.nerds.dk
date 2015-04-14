@@ -4,7 +4,6 @@ namespace frontend\components;
 use Yii;
 use yii\base\Component;
 use yii\base\Exception;
-use yii\base\InvalidParamException;
 
 class Image extends Component
 {
@@ -46,6 +45,9 @@ class Image extends Component
         $thumbName = str_replace('x', '_', $dimensions) . '_' . $action[0] . '_' . $srcImageName;
         $fullOriginalName = $this->_getFullPathToOriginalImage($srcImageName);
         $fullThumbName = Yii::getAlias($this->thumbFolder . $thumbName);
+        if (!$this->_checkFileExistence($fullOriginalName)) {
+            throw new Exception('Original image with given name is not found.');
+        }
         if (!$this->_checkFileExistence($fullThumbName)) {
             $image = Yii::$app->imageProcessor->load($fullOriginalName);
             if ($action == 'resize') {
@@ -103,13 +105,13 @@ class Image extends Component
 
     private function _checkImageNamePresence($imageName = '')
     {
-        if (!$imageName) throw new InvalidParamException('Image name is not specified.');
+        if (!$imageName) throw new Exception('Image name is not specified.');
     }
 
     private function _getImageDimensions($dimensions = '')
     {
-        if (!$dimensions) throw new InvalidParamException('Image dimensions are not set.');
-        if (false === strpos($dimensions, 'x')) throw new InvalidParamException('Incorrect image dimensions.');
+        if (!$dimensions) throw new Exception('Image dimensions are not set.');
+        if (false === strpos($dimensions, 'x')) throw new Exception('Incorrect image dimensions.');
         $hash = [];
         list($hash['w'], $hash['h']) = explode('x', $dimensions);
         return $hash;
@@ -119,7 +121,7 @@ class Image extends Component
     {
         $actions = ['crop', 'resize'];
         if (!in_array($action, $actions)) {
-            throw new InvalidParamException('Incorrect action passed.');
+            throw new Exception('Incorrect action passed.');
         }
     }
 
