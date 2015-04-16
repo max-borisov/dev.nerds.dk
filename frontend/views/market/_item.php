@@ -3,16 +3,11 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\base\Exception;
 use frontend\components\HelperBase;
 
 $previewDimensions = '100x75';
 $itemUrl = Url::to('/market/' . $item->id);
-try {
-    $preview = $item->resizePreview($item->preview, $previewDimensions);
-} catch (Exception $e) {
-    $preview = Yii::$app->imagePlaceholder->get($dimensions);
-}
+$preview = $item->getPreview($item->preview, $previewDimensions);
 ?>
 <tr>
     <td align="center"><?= substr($item->ad_type_title, 0, 1) ?></td>
