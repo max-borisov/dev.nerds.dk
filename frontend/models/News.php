@@ -56,14 +56,7 @@ class News extends ActiveRecord
     public function afterFind()
     {
         parent::afterFind();
-
-        $this->preview = '';
-        $post = strip_tags($this->post, '<img>');
-        $pattern = '|src="([^"]+)"|';
-        preg_match($pattern, $post, $matches);
-        if (!empty($matches[1])) {
-            $this->preview = $matches[1];
-        }
+        $this->_setPreview();
     }
 
     /**
@@ -93,5 +86,16 @@ class News extends ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    private function _setPreview()
+    {
+        $this->preview = '';
+        $post = strip_tags($this->post, '<img>');
+        $pattern = '|src="([^"]+)"|';
+        preg_match($pattern, $post, $matches);
+        if (!empty($matches[1])) {
+            $this->preview = $matches[1];
+        }
     }
 }
