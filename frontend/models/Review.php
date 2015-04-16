@@ -6,6 +6,7 @@ use Yii;
 use frontend\models\ReviewType;
 use frontend\components\HelperBase;
 use frontend\components\NewsReviewsBehavior;
+use frontend\components\ImagePreviewBehavior;
 
 /**
  * This is the model class for table "review".
@@ -40,6 +41,7 @@ class Review extends ActiveRecord
     {
         return [
             NewsReviewsBehavior::className(),
+            ImagePreviewBehavior::className(),
         ];
     }
 
