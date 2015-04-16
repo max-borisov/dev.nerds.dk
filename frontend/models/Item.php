@@ -189,7 +189,7 @@ class Item extends ActiveRecord
         return parent::beforeSave($insert);
     }
 
-    public function resizePreview($previewName, $dimensions)
+    public function resizePreview($previewName, $dimensions = '200x150')
     {
         if (empty($previewName)) {
             return Yii::$app->imagePlaceholder->get($dimensions);
