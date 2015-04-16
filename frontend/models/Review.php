@@ -71,14 +71,7 @@ class Review extends ActiveRecord
     public function afterFind()
     {
         parent::afterFind();
-        if (!empty($this->notice)) {
-            $post_short = $this->notice;
-        } else {
-            $post_short = strip_tags($this->post);
-            $post_short = str_replace('&nbsp;', '', $post_short);
-            $post_short = HelperBase::makeShortText($post_short, HelperBase::getParam('shortArticleLength'));
-        }
-        $this->post_short = trim($post_short);
+        $this->post_short = trim($this->_getShortPost());
     }
 
     /**
@@ -118,5 +111,17 @@ class Review extends ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    private function _getShortPost()
+    {
+        if (!empty($this->notice)) {
+            $post_short = $this->notice;
+        } else {
+            $post_short = strip_tags($this->post);
+            $post_short = str_replace('&nbsp;', '', $post_short);
+            $post_short = HelperBase::makeShortText($post_short, HelperBase::getParam('shortArticleLength'));
+        }
+        return trim($post_short);
     }
 }
