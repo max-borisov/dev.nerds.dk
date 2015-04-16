@@ -5,6 +5,7 @@ namespace frontend\models;
 use Yii;
 use frontend\models\ItemCategory;
 use frontend\components\HelperBase;
+use frontend\components\ImagePreviewBehavior;
 use yii\base\Exception;
 
 /**
@@ -86,6 +87,13 @@ class Item extends ActiveRecord
     public static function tableName()
     {
         return 'item';
+    }
+
+    public function behaviors()
+    {
+        return [
+            ImagePreviewBehavior::className(),
+        ];
     }
 
     public function queryAll($keywords, $category, $priceMin, $priceMax)
@@ -189,13 +197,13 @@ class Item extends ActiveRecord
         return parent::beforeSave($insert);
     }
 
-    public function resizePreview($previewName, $dimensions = '200x150')
+    /*public function resizePreview($previewName, $dimensions = '200x150')
     {
         if (empty($previewName)) {
             return Yii::$app->imagePlaceholder->get($dimensions);
         }
         return Yii::$app->image->thumb($previewName, $dimensions)->url();
-    }
+    }*/
 
     public function originalPreview($previewName, $dimensions)
     {
