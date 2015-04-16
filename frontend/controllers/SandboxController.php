@@ -17,8 +17,9 @@ class SandboxController extends Controller
 {
     public function actionIndex()
     {
-        $item = Item::find(1)->one();
-        HelperBase::dump($item->category['title']);
+//        $item = Item::find(1)->one();
+//        HelperBase::dump($item->category['title']);
+//        Yii::error(['error' => 'test', 'id' => '111'], __METHOD__);
     }
 
     public function actionParser()
