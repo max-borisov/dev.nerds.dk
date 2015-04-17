@@ -51,15 +51,6 @@ class Review extends ActiveRecord
         return parent::beforeSave($insert);
     }
 
-    private function _extractPreviewFromPost()
-    {
-        $post = strip_tags($this->post, '<img>');
-        $pattern = '/src="([^"]+)"/i';
-        preg_match($pattern, $post, $matches);
-        if (empty($matches[1])) return false;
-        $this->preview = $matches[1];
-    }
-
     public function queryAll($filter = '')
     {
         $columns = 'id, title, notice, post, post_date, preview';
@@ -125,5 +116,14 @@ class Review extends ActiveRecord
             $post_short = HelperBase::makeShortText($post_short, HelperBase::getParam('shortArticleLength'));
         }
         return trim($post_short);
+    }
+
+    private function _extractPreviewFromPost()
+    {
+        $post = strip_tags($this->post, '<img>');
+        $pattern = '/src="([^"]+)"/i';
+        preg_match($pattern, $post, $matches);
+        if (empty($matches[1])) return false;
+        $this->preview = $matches[1];
     }
 }
