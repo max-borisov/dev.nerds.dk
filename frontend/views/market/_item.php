@@ -18,8 +18,7 @@ $preview = $item->getPreview($item->preview, $previewDimensions);
     <td>
         <?= Html::a(
             Html::img($preview, ['class' => 'img-responsive']),
-            $itemUrl,
-            ['data-footer' => 'Image description', 'data-title' => $item->title, 'data-toggle' => 'lightbox']
+            $itemUrl
         ) ?>
     </td>
 </tr>
