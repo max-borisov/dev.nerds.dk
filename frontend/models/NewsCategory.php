@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
  * @property integer $created_at
  * @property integer $updated_at
  */
-class NewsCategory extends \yii\db\ActiveRecord
+class NewsCategory extends ActiveRecord
 {
     const GAMES         = 1;
     const MEDIA         = 2;

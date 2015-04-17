@@ -3,7 +3,6 @@
 namespace frontend\models;
 
 use Yii;
-use frontend\models\ActiveRecord;
 
 /**
  * This is the model class for table "review_type".

@@ -3,7 +3,7 @@
 namespace frontend\models;
 
 use Yii;
-use frontend\components\NewsReviewsBehavior;
+use frontend\components\behaviors\NewsReviewsBehavior;
 
 /**
  * This is the model class for table "news".

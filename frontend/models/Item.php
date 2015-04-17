@@ -4,8 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use frontend\models\ItemCategory;
-use frontend\components\HelperBase;
-use frontend\components\ImagePreviewBehavior;
+use frontend\components\behaviors\ImagePreviewBehavior;
 use yii\base\Exception;
 
 /**

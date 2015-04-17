@@ -4,7 +4,6 @@ namespace frontend\models;
 
 use Yii;
 use frontend\models\Item;
-use frontend\models\ActiveRecord;
 use yii\helpers\ArrayHelper;
 
 /**

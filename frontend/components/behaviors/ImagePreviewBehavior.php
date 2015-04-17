@@ -1,5 +1,5 @@
 <?php
-namespace frontend\components;
+namespace frontend\components\behaviors;
 
 use Yii;
 use yii\base\Behavior;

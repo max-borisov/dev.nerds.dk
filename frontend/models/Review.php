@@ -5,8 +5,8 @@ namespace frontend\models;
 use Yii;
 use frontend\models\ReviewType;
 use frontend\components\HelperBase;
-use frontend\components\NewsReviewsBehavior;
-use frontend\components\ImagePreviewBehavior;
+use frontend\components\behaviors\NewsReviewsBehavior;
+use frontend\components\behaviors\ImagePreviewBehavior;
 
 /**
  * This is the model class for table "review".
