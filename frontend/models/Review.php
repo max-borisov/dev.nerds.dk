@@ -47,7 +47,6 @@ class Review extends ActiveRecord
 
     public function beforeSave($insert)
     {
-        $this->_extractPreviewFromPost();
         return parent::beforeSave($insert);
     }
 
@@ -118,12 +117,12 @@ class Review extends ActiveRecord
         return trim($post_short);
     }
 
-    private function _extractPreviewFromPost()
+    /*private function _extractPreviewFromPost()
     {
         $post = strip_tags($this->post, '<img>');
         $pattern = '/src="([^"]+)"/i';
         preg_match($pattern, $post, $matches);
         if (empty($matches[1])) return false;
         $this->preview = $matches[1];
-    }
+    }*/
 }

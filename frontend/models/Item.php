@@ -260,7 +260,7 @@ class Item extends ActiveRecord
 
     private function _validateUser()
     {
-        if (empty($this->user_id)) throw new Exception('User id cannot be blank.');
+        if (!isset($this->user_id)) throw new Exception('User id cannot be blank.');
     }
 
     /*public function beforeDelete()

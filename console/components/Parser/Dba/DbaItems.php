@@ -268,7 +268,8 @@ class DbaItems extends Base
 
     private function _getPubDate($html)
     {
-        $pattern = '|<span\s+class="time-stamp">([^<]+)</span>|is';
+        $pattern = '|<span\s+class="heading-small muted">([^<]+)</span>|is';
+//        $pattern = '|<span\s+class="time-stamp">([^<]+)</span>|is';
         preg_match($pattern, $html, $matches);
         if (isset($matches[1])) {
             return trim($matches[1]);

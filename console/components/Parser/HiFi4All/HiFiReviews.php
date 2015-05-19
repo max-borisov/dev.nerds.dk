@@ -105,6 +105,7 @@ class HiFiReviews extends Base
 
     public function run()
     {
+        set_time_limit(0);
         $before = $this->getExistingRowsCount('review', ExternalSite::HIFI4ALL);
         $blocks = $this->getCatalogLinks();
         foreach ($blocks as $reviewType => $blockIds) {

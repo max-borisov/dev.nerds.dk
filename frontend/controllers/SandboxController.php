@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use frontend\models\Item;
+use Symfony\Component\Console\Helper\Helper;
 use Yii;
 use yii\base\ErrorException;
 use yii\db\Exception;
@@ -24,8 +25,10 @@ class SandboxController extends Controller
 
     public function actionParser()
     {
-        require_once Yii::getAlias('@console') . '/components/Parser/HiFi4All/HiFiItems.php';
-        (new HiFiItems())->run();
+        HelperBase::dump((new DbaItems)->parsePage(1011651433));
+
+//        require_once Yii::getAlias('@console') . '/components/Parser/HiFi4All/HiFiItems.php';
+//        (new HiFiItems())->run();
 //        $testId = '289792';
 //        $data = (new HiFiItems())->parsePage($testId);
 //        HelperBase::dump($data);

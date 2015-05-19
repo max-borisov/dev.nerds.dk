@@ -42,14 +42,14 @@ return [
             'errorAction' => 'site/error',
         ],
         // Composer yurkinx/yii2-image
-        'imageProcessor' => [
+        /*'imageProcessor' => [
             'class'  => 'yii\image\ImageDriver',
             'driver' => 'GD',  //GD or Imagick
         ],
         'image' => [
             'class'   => 'frontend\components\Image',
             'quality' => 100,
-        ],
+        ],*/
         'imagePlaceholder' => [
             'class'   => 'frontend\components\ImagePlaceholder',
         ],
