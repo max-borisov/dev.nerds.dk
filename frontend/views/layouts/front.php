@@ -5,6 +5,7 @@
 use frontend\widgets\ForumWidget;
 use frontend\widgets\ReviewsWidget;
 use frontend\widgets\NewsWidgetBig;
+use frontend\widgets\NewsWidgetSmall;
 ?>
 <?php $this->beginContent('@app/views/layouts/base.php'); ?>
 <div class="row form-group">
@@ -57,27 +58,7 @@ use frontend\widgets\NewsWidgetBig;
             </div>
             <div class="col-xs-4">
                 <span class="hor-line">&nbsp;</span>
-
-                <article class="black-box">
-                    <a href="#"><img class="full-width" src="images/img03.jpg" alt=""/></a>
-                    <section class="padding-add">
-                        <h3><a href="#">Nyhed: Demoaften hos Lydportalen Frederiksberg (0)</a></h3>
-                        <p>
-                            <a href="#">Lydportalen Frederiksberg holder demo med Audiovectors nye SR serie, 6. november hvor Mads Klifoth gæster butikken.</a>
-                        </p>
-                    </section>
-                </article>
-                <span class="hor-line add">&nbsp;</span>
-                <article class="red-box">
-                    <a href="#"><img class="full-width" src="images/img04.jpg" alt=""/></a>
-                    <section class="padding-add">
-                        <h3><a href="#">Nyhed: WiMP åbner op for HiFi-lyd direkte i webplayeren (0)</a></h3>
-                        <p>
-                            <a href="#">Wimp (hifi) nu også tilgængelig direkte i din browser</a>
-                        </p>
-                    </section>
-                </article>
-
+                <?= NewsWidgetSmall::widget() ?>
             </div>
         </div>
     </div>
