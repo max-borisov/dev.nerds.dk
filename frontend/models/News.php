@@ -4,6 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use frontend\components\behaviors\NewsReviewsBehavior;
+use frontend\components\behaviors\ImagePreviewBehavior;
 
 /**
  * This is the model class for table "news".
@@ -16,14 +17,13 @@ use frontend\components\behaviors\NewsReviewsBehavior;
  * @property string $af
  * @property string $notice
  * @property string $post
+ * @property string $preview
  * @property string $post_date
  * @property integer $created_at
  * @property integer $updated_at
  */
 class News extends ActiveRecord
 {
-    public $preview;
-
     /**
      * @inheritdoc
      */
@@ -36,6 +36,7 @@ class News extends ActiveRecord
     {
         return [
             NewsReviewsBehavior::className(),
+            ImagePreviewBehavior::className(),
         ];
     }
 
@@ -53,25 +54,6 @@ class News extends ActiveRecord
         return $query->orderBy('post_date DESC');
     }
 
-    public function afterFind()
-    {
-        parent::afterFind();
-        $this->_setPreview();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    /*public function rules()
-    {
-        return [
-//            [['title', 'af', 'notice', 'post'], 'required'],
-            [['title', 'af', 'post', 'site_id', 'news_id'], 'required'],
-            [['title', 'af', 'notice', 'post_date'], 'string', 'max' => 255],
-            [['post'], 'string'],
-        ];
-    }*/
-
     /**
      * @inheritdoc
      */
@@ -86,16 +68,5 @@ class News extends ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
-    }
-
-    private function _setPreview()
-    {
-        $this->preview = '';
-        $post = strip_tags($this->post, '<img>');
-        $pattern = '|src="([^"]+)"|';
-        preg_match($pattern, $post, $matches);
-        if (!empty($matches[1])) {
-            $this->preview = $matches[1];
-        }
     }
 }
