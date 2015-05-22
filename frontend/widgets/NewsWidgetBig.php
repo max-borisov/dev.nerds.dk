@@ -20,6 +20,6 @@ class NewsWidgetBig extends Widget
                     ->orderBy('id DESC')
                     ->limit($this->_limit)
                     ->all();
-        return $this->render('news', ['news' => $news]);
+        return $this->render('newsBig', ['news' => $news]);
     }
 }

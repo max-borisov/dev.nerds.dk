@@ -13,7 +13,7 @@
             case 2: $class = 'green-box'; break;
             case 3: $class = 'blue-box'; break;
         }
-        echo $this->render('_news', ['item' => $item, 'class' => $class, 'counter' => $counter]);
+        echo $this->render('_newsBig', ['item' => $item, 'class' => $class, 'counter' => $counter]);
     }
     ?>
 </div>
