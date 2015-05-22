@@ -9,6 +9,12 @@ use frontend\models\Review;
 use frontend\components\HelperBase;
 use yii\console\Exception;
 
+/**
+ * Get preview link abd download it.
+ *
+ * Class PreviewController
+ * @package console\controllers
+ */
 class PreviewController extends Controller
 {
     public function actionUp($table)
