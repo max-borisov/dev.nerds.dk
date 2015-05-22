@@ -5,7 +5,7 @@ namespace frontend\widgets;
 use yii\base\Widget;
 use frontend\models\News;
 
-class NewsWidget extends Widget
+class NewsWidgetBig extends Widget
 {
     private $_limit = 3;
 

@@ -4,7 +4,7 @@
 
 use frontend\widgets\ForumWidget;
 use frontend\widgets\ReviewsWidget;
-use frontend\widgets\NewsWidget;
+use frontend\widgets\NewsWidgetBig;
 ?>
 <?php $this->beginContent('@app/views/layouts/base.php'); ?>
 <div class="row form-group">
@@ -53,10 +53,11 @@ use frontend\widgets\NewsWidget;
         <div class="row">
             <div class="col-xs-8">
                 <span class="hor-line">&nbsp;</span>
-                <?= NewsWidget::widget() ?>
+                <?= NewsWidgetBig::widget() ?>
             </div>
             <div class="col-xs-4">
                 <span class="hor-line">&nbsp;</span>
+
                 <article class="black-box">
                     <a href="#"><img class="full-width" src="images/img03.jpg" alt=""/></a>
                     <section class="padding-add">
@@ -76,6 +77,7 @@ use frontend\widgets\NewsWidget;
                         </p>
                     </section>
                 </article>
+
             </div>
         </div>
     </div>
