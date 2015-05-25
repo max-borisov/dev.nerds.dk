@@ -9,6 +9,7 @@ use frontend\widgets\NewsWidgetSmall;
 use frontend\widgets\AdBlockTop;
 use frontend\widgets\AdBlockBottom;
 use frontend\widgets\ReviewsWidgetBig;
+use frontend\widgets\ReviewsWidgetSmall;
 ?>
 <?php $this->beginContent('@app/views/layouts/base.php'); ?>
 <div class="row form-group">
@@ -62,25 +63,7 @@ use frontend\widgets\ReviewsWidgetBig;
             </div>
             <div class="col-xs-4">
                 <span class="hor-line">&nbsp;</span>
-                <article class="blue-box">
-                    <a href="#"><img class="full-width" src="images/img05.jpg" alt=""/></a>
-                    <section class="padding-add">
-                        <h3><a href="#">Nyhed: Vind JBL i julekonkurrencen Nerds.dk (0)</a></h3>
-                        <p>
-                            <a href="#">Ny standerhøjttaler fra franske Triangle</a>
-                        </p>
-                    </section>
-                </article>
-                <span class="hor-line add">&nbsp;</span>
-                <article class="green-box">
-                    <a href="#"><img class="full-width" src="images/img06.jpg" alt=""/></a>
-                    <section class="padding-add">
-                        <h3><a href="#">Nyhed: WiMP åbner op for HiFi-lyd direkte i webplayeren (0)</a></h3>
-                        <p>
-                            <a href="#">I samarbejde med JBL udlover vi to præmier, et sæt JBL Synchros E10 in-ear hovedtelefoner, og en JBL Clip, trådløs bærvar højttaler.</a>
-                        </p>
-                    </section>
-                </article>
+                <?= ReviewsWidgetSmall::widget() ?>
             </div>
         </div>
     </div>
