@@ -7,6 +7,8 @@ use frontend\widgets\ReviewsWidget;
 use frontend\widgets\NewsWidgetBig;
 use frontend\widgets\NewsWidgetMiddle;
 use frontend\widgets\NewsWidgetSmall;
+use frontend\widgets\AdBlockTop;
+use frontend\widgets\AdBlockBottom;
 ?>
 <?php $this->beginContent('@app/views/layouts/base.php'); ?>
 <div class="row form-group">
@@ -26,12 +28,7 @@ use frontend\widgets\NewsWidgetSmall;
 </div>
 <div class="row form-group">
     <div class="col-sm-3">
-        <div class="banner form-group">
-            <img class="full-width" src="images/banner_250-360.jpg" alt=""/>
-        </div>
-        <div class="banner form-group">
-            <img class="full-width" src="images/banner_250-360.jpg" alt=""/>
-        </div>
+        <?= AdBlockTop::widget() ?>
     </div>
     <div class="col-sm-6">
         <div class="row">
@@ -55,12 +52,7 @@ use frontend\widgets\NewsWidgetSmall;
 <?= $this->render('partial/_carousel') ?>
 <div class="row form-group">
     <div class="col-sm-3">
-        <div class="banner form-group">
-            <img alt="" src="images/banner_250-360.jpg" class="full-width">
-        </div>
-        <div class="banner form-group">
-            <img alt="" src="images/banner_250-360.jpg" class="full-width">
-        </div>
+        <?= AdBlockBottom::widget() ?>
     </div>
     <div class="col-sm-6 grey-box">
         <div class="row">
