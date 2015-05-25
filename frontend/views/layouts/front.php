@@ -5,6 +5,7 @@
 use frontend\widgets\ForumWidget;
 use frontend\widgets\ReviewsWidget;
 use frontend\widgets\NewsWidgetBig;
+use frontend\widgets\NewsWidgetMiddle;
 use frontend\widgets\NewsWidgetSmall;
 ?>
 <?php $this->beginContent('@app/views/layouts/base.php'); ?>
@@ -20,25 +21,7 @@ use frontend\widgets\NewsWidgetSmall;
     </div>
     <div class="col-sm-3 ">
         <span class="hor-line">&nbsp;</span>
-        <article class="red-box">
-            <a href="#"><img class="full-width" src="images/img01.jpg" alt=""/></a>
-            <section class="padding-add">
-                <h3><a href="#">Nyhed: Sonos 5.2 (0)</a></h3>
-                <p>
-                    <a href="#">Nyd den forbedrede lyd til din PLAYBAR og understøttelse af flere konti for musiktjenester. Android-brugere kan prøve dette i dag i en betaversion. Øvrige brugere får adgang senere i år.</a>
-                </p>
-            </section>
-        </article>
-        <span class="hor-line add">&nbsp;</span>
-        <article class="green-box">
-            <a href="#"><img class="full-width" src="images/img02.jpg" alt=""/></a>
-            <section class="padding-add">
-                <h3><a href="#">Nyhed: Room AV byder på Dolby Atmos demo (0)</a></h3>
-                <p>
-                    <a href="#">6 November kan du opleve det nyeste surroundformat hos Room AV</a>
-                </p>
-            </section>
-        </article>
+        <?= NewsWidgetMiddle::widget() ?>
     </div>
 </div>
 <div class="row form-group">
