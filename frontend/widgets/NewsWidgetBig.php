@@ -9,11 +9,6 @@ class NewsWidgetBig extends Widget
 {
     private $_limit = 3;
 
-    public function init()
-    {
-        parent::init();
-    }
-
     public function run()
     {
         $news = News::find()
