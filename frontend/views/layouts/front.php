@@ -3,12 +3,12 @@
 /* @var $content string */
 
 use frontend\widgets\ForumWidget;
-use frontend\widgets\ReviewsWidget;
 use frontend\widgets\NewsWidgetBig;
 use frontend\widgets\NewsWidgetMiddle;
 use frontend\widgets\NewsWidgetSmall;
 use frontend\widgets\AdBlockTop;
 use frontend\widgets\AdBlockBottom;
+use frontend\widgets\ReviewsWidgetBig;
 ?>
 <?php $this->beginContent('@app/views/layouts/base.php'); ?>
 <div class="row form-group">
@@ -58,7 +58,7 @@ use frontend\widgets\AdBlockBottom;
         <div class="row">
             <div class="col-xs-8">
                 <span class="hor-line">&nbsp;</span>
-                <?= ReviewsWidget::widget() ?>
+                <?= ReviewsWidgetBig::widget() ?>
             </div>
             <div class="col-xs-4">
                 <span class="hor-line">&nbsp;</span>
