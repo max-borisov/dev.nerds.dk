@@ -4,37 +4,32 @@ namespace console\controllers;
 
 use Yii;
 use yii\console\Controller;
-use frontend\models\News;
-use frontend\models\Review;
+use frontend\models\Item;
+use frontend\models\ExternalSite;
 use frontend\components\HelperBase;
 use yii\console\Exception;
 
 /**
  * Get preview link and download it.
  *
- * Class PreviewController
+ * Class DbapreviewController
  * @package console\controllers
  */
-class PreviewController extends Controller
+class DbapreviewController extends Controller
 {
-    public function actionUp($table)
+    public function actionUp()
     {
-        $this->_validateTableName($table);
         set_time_limit(0);
         $count = 0;
+        $table = 'item';
         $originalFolderPath = HelperBase::getParam('images')['pathToOriginal'];
-        switch($table) {
-            case 'news'     : $finder = News::find(); break;
-            case 'review'   : $finder = Review::find(); break;
-        }
-        $rows = $finder->where("preview = ''")->all();
-        /* @var $item \frontend\models\News */
+        $rows = Item::find()
+            ->where("preview = '' AND s_preview != '' AND site_id = " . ExternalSite::DBA)
+            ->limit(5)
+            ->all();
+        /* @var $item \frontend\models\Item */
         foreach ($rows as $item) {
-            $post = strip_tags($item->post, '<img>');
-            $pattern = '/src="([^"]+)"/i';
-            preg_match($pattern, $post, $matches);
-            if (empty($matches[1])) continue;
-            $previewSourceUrl = $matches[1];
+            $previewSourceUrl = $item->s_preview;
             $previewUniqueName = $this->_getUniqueId($item->created_at) . '.' . $this->_getFileExtension($previewSourceUrl);
             $copyPath = Yii::getAlias($originalFolderPath . '/' . $previewUniqueName);
             try {
@@ -65,9 +60,8 @@ class PreviewController extends Controller
         exit(Controller::EXIT_CODE_NORMAL);
     }
 
-    public function actionDown($table)
+    /*public function actionDown()
     {
-        $this->_validateTableName($table);
         $sql =  'UPDATE ' . $table .
                 ' SET
                     preview     = "",
@@ -79,15 +73,7 @@ class PreviewController extends Controller
             ->execute();
         echo $rows, " have been updated\r\n";
         exit(Controller::EXIT_CODE_NORMAL);
-    }
-
-    private function _validateTableName($table)
-    {
-        $data = ['news' ,'review'];
-        if (!in_array($table, $data)) {
-            throw new Exception('Incorrect table name given.');
-        }
-    }
+    }*/
 
     private function _getUniqueId($prefix)
     {
