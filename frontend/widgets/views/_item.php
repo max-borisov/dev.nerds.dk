@@ -4,7 +4,7 @@
 use yii\helpers\Url;
 
 $itemLink = Url::to('/market/' . $item->id);
-$preview = $item->getPreview($item->preview, '263x197', 'resize');
+$preview = $item->getPreview($item->preview, '263x197', 'crop');
 $type = $item->s_type ? $item->s_type : $item->media_type;
 ?>
 <article class="<?= $class ?> margin-down">

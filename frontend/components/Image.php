@@ -59,6 +59,7 @@ class Image extends Component
         $thumbName = str_replace('x', '_', $dimensions) . '_' . $action[0] . '_' . $srcImageName;
         $fullOriginalName = $this->_getFullPathToOriginalImage($srcImageName);
         $fullThumbName = Yii::getAlias($this->thumbFolder . $thumbName);
+        $fullThumbName = $this->_removeGetParamsFromName($fullThumbName);
         $this->_ensureThatFileExists($fullOriginalName);
         try {
             $this->_ensureThatFileExists($fullThumbName);
@@ -169,5 +170,14 @@ class Image extends Component
             $offsetY = round(($image->height - $dimensionsHash['h']) / 2);
         }
         return $image->crop($dimensionsHash['w'], $dimensionsHash['h'], $offsetX, $offsetY);
+    }
+
+    private function _removeGetParamsFromName($name)
+    {
+        if (($position = strpos($name, '?')) !== false) {
+            return substr($name, 0, $position);
+        }
+
+        return $name;
     }
 }

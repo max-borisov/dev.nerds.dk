@@ -59,21 +59,6 @@ class DbapreviewController extends Controller
         exit(Controller::EXIT_CODE_NORMAL);
     }
 
-    /*public function actionDown()
-    {
-        $sql =  'UPDATE ' . $table .
-                ' SET
-                    preview     = "",
-                    updated_at  = UNIX_TIMESTAMP()
-                WHERE
-                    preview     != ""';
-        $rows = Yii::$app->db
-            ->createCommand($sql)
-            ->execute();
-        echo $rows, " have been updated\r\n";
-        exit(Controller::EXIT_CODE_NORMAL);
-    }*/
-
     private function _getUniqueId($prefix)
     {
         return uniqid($prefix);
