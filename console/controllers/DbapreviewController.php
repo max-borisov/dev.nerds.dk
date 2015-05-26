@@ -25,6 +25,7 @@ class DbapreviewController extends Controller
         $originalFolderPath = HelperBase::getParam('images')['pathToOriginal'];
         $rows = Item::find()
             ->where("preview = '' AND s_preview != '' AND site_id = " . ExternalSite::DBA)
+	    ->limit(1000)
             ->all();
         /* @var $item \frontend\models\Item */
         foreach ($rows as $item) {
