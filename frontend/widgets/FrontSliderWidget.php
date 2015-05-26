@@ -13,12 +13,12 @@ class FrontSliderWidget extends Widget
     public function run()
     {
         $news = News::find()
-                ->select('title, preview')
+                ->select('id, title, preview')
                 ->orderBy('id DESC')
                 ->limit($this->_limit)
                 ->all();
         $reviews = Review::find()
-                    ->select('title, preview')
+                    ->select('id, title, preview')
                     ->orderBy('id DESC')
                     ->limit($this->_limit)
                     ->all();

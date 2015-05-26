@@ -2,6 +2,8 @@
 /* @var $newsItem frontend\models\News */
 /* @var $reviewItem frontend\models\Review */
 
+use yii\helpers\Url;
+
 $previewSize = '262x196';
 $previewAction = 'crop';
 ?>
@@ -23,19 +25,18 @@ $previewAction = 'crop';
                         $counter = 0;
                         foreach ($news as $newsItem) {
                             $preview = $newsItem->getPreview($newsItem->preview, $previewSize, $previewAction);
+                            $original = Yii::$app->image->original($newsItem->preview)->path();
                             $class = $counter++ == 0 ? ' active' : '';
+                            $newsUrl = Url::to('/news/' . $newsItem->id);
                         ?>
                             <div class="item<?= $class ?>">
                                 <a
                                     class="test-link"
-                                    data-footer="<?= $newsItem->title ?>"
                                     data-parent="#carousel-01"
                                     data-gallery="global-gallery"
-                                    data-toggle="lightbox"
-                                    href="<?= $preview ?>">
+                                    href="<?= $newsUrl ?>">
                                     <img
                                         class="img-responsive"
-                                        data-src="images/slide-img01.jpg"
                                         src="<?= $preview ?>"
                                         alt="<?= $newsItem->title ?>">
                                 </a>
@@ -67,18 +68,17 @@ $previewAction = 'crop';
                         $counter = 0;
                         foreach ($reviews as $reviewItem) {
                             $preview = $reviewItem->getPreview($reviewItem->preview, $previewSize, $previewAction);
+                            $original = Yii::$app->image->original($reviewItem->preview)->path();
                             $class = $counter++ == 0 ? ' active' : '';
+                            $reviewUrl = Url::to('/articles/' . $reviewItem->id);
                         ?>
                             <div class="item<?= $class ?>">
                                 <a
-                                    data-footer="<?= $reviewItem->title ?>"
                                     data-parent="#carousel-02"
                                     data-gallery="global-gallery"
-                                    data-toggle="lightbox"
-                                    href="<?= $preview ?>">
+                                    href="<?= $reviewUrl ?>">
                                     <img
                                         class="img-responsive"
-                                        data-src="<?= $preview ?>"
                                         src="<?= $preview ?>"
                                         alt="<?= $reviewItem->title ?>">
                                 </a>
