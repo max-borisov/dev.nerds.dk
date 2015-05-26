@@ -11,6 +11,7 @@ use frontend\widgets\AdBlockBottom;
 use frontend\widgets\ReviewsWidgetBig;
 use frontend\widgets\ReviewsWidgetSmall;
 use frontend\widgets\ItemsWidget;
+use frontend\widgets\FrontSliderWidget;
 ?>
 <?php $this->beginContent('@app/views/layouts/base.php'); ?>
 <div class="row form-group">
@@ -51,7 +52,7 @@ use frontend\widgets\ItemsWidget;
     </div>
     <!-- forum-box end -->
 </div>
-<?= $this->render('partial/_carousel') ?>
+<?= FrontSliderWidget::widget() ?>
 <div class="row form-group">
     <div class="col-sm-3">
         <?= AdBlockBottom::widget() ?>
