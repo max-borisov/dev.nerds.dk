@@ -15,11 +15,13 @@ class FrontSliderWidget extends Widget
         $news = News::find()
                 ->select('id, title, preview')
                 ->orderBy('id DESC')
+                ->where('preview != ""')
                 ->limit($this->_limit)
                 ->all();
         $reviews = Review::find()
                     ->select('id, title, preview')
                     ->orderBy('id DESC')
+                    ->where('preview != ""')
                     ->limit($this->_limit)
                     ->all();
         return $this->render('slider', ['news' => $news, 'reviews' => $reviews]);

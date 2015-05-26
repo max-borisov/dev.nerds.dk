@@ -25,8 +25,8 @@ $previewAction = 'crop';
                         $counter = 0;
                         foreach ($news as $newsItem) {
                             $preview = $newsItem->getPreview($newsItem->preview, $previewSize, $previewAction);
-                            $preview = substr($preview, strrpos($preview, '/') + 1);
-                            $original = Yii::$app->image->original($preview)->path();
+//                            $preview = substr($preview, strrpos($preview, '/') + 1);
+//                            $original = Yii::$app->image->original($preview)->path();
                             $class = $counter++ == 0 ? ' active' : '';
                             $newsUrl = Url::to('/news/' . $newsItem->id);
                         ?>
@@ -69,8 +69,8 @@ $previewAction = 'crop';
                         $counter = 0;
                         foreach ($reviews as $reviewItem) {
                             $preview = $reviewItem->getPreview($reviewItem->preview, $previewSize, $previewAction);
-                            $preview = substr($preview, strrpos($preview, '/') + 1);
-                            $original = Yii::$app->image->original($preview)->path();
+//                            $preview = substr($preview, strrpos($preview, '/') + 1);
+//                            $original = Yii::$app->image->original($preview)->path();
                             $class = $counter++ == 0 ? ' active' : '';
                             $reviewUrl = Url::to('/articles/' . $reviewItem->id);
                         ?>
