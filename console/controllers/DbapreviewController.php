@@ -24,9 +24,9 @@ class DbapreviewController extends Controller
         $count = 0;
         $table = 'item';
         $originalFolderPath = HelperBase::getParam('images')['pathToOriginal'];
-	$query = (new Query())
-		    ->from('item')
-		    ->where("preview = '' AND s_preview != '' AND site_id = " . ExternalSite::DBA);
+	    $query = (new Query())
+            ->from('item')
+            ->where("preview = '' AND s_preview != '' AND site_id = " . ExternalSite::DBA);
         foreach ($query->each() as $item) {
             $previewSourceUrl = $item['s_preview'];
             $previewUniqueName = $this->_getUniqueId($item['created_at']) . '.' . $this->_getFileExtension($previewSourceUrl);
