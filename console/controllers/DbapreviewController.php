@@ -8,6 +8,7 @@ use frontend\models\Item;
 use frontend\models\ExternalSite;
 use frontend\components\HelperBase;
 use yii\console\Exception;
+use yii\db\Query;
 
 /**
  * Get preview link and download it.
@@ -23,14 +24,12 @@ class DbapreviewController extends Controller
         $count = 0;
         $table = 'item';
         $originalFolderPath = HelperBase::getParam('images')['pathToOriginal'];
-        $rows = Item::find()
-            ->where("preview = '' AND s_preview != '' AND site_id = " . ExternalSite::DBA)
-	        ->limit(1000)
-            ->all();
-        /* @var $item \frontend\models\Item */
-        foreach ($rows as $item) {
-            $previewSourceUrl = $item->s_preview;
-            $previewUniqueName = $this->_getUniqueId($item->created_at) . '.' . $this->_getFileExtension($previewSourceUrl);
+	$query = (new Query())
+		    ->from('item')
+		    ->where("preview = '' AND s_preview != '' AND site_id = " . ExternalSite::DBA);
+        foreach ($query->each() as $item) {
+            $previewSourceUrl = $item['s_preview'];
+            $previewUniqueName = $this->_getUniqueId($item['created_at']) . '.' . $this->_getFileExtension($previewSourceUrl);
             $copyPath = Yii::getAlias($originalFolderPath . '/' . $previewUniqueName);
             try {
                 if (!copy($previewSourceUrl, $copyPath)) {
@@ -40,7 +39,7 @@ class DbapreviewController extends Controller
                     ' SET
                         preview     = :preview,
                         updated_at  = UNIX_TIMESTAMP()
-                    WHERE id = ' . $item->id;
+                    WHERE id = ' . $item['id'];
                 $num = Yii::$app->db
                     ->createCommand($sql)
                     ->bindParam(':preview', $previewUniqueName)
