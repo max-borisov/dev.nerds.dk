@@ -12,6 +12,6 @@ sh reviews-rec.sh
 
 sh media-rec.sh
 
-# sh items-dba.sh
+sh items-dba.sh
 
 echo "[---] END. All parsers."
