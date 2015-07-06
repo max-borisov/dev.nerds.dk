@@ -1,26 +1,38 @@
 <?php
 /* @var $this yii\web\View */
+/* @var $model frontend\models\ItemUserAdv */
 
+use yii\helpers\Html;
 ?>
+
 <h3>Kontakt annoncør</h3>
-<div class="row">
-    <form class="form-horizontal col-sm-11">
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="Email">Din e-mail</label>
-            <div class="col-sm-9">
-                <input type="email" id="Email" class="form-control">
+    <div class="row">
+        <?php
+            if ($model->hasErrors()) {
+                echo Html::tag('div', Html::errorSummary($model), ['class' => 'error-summary']);
+            }
+        ?>
+        <?= Html::beginForm('', 'post', [
+            'class' => 'form-horizontal col-sm-11',
+            'role' => 'form',
+        ]); ?>
+            <?= Html::activeHiddenInput($model, 'item_id'); ?>
+            <div class="form-group">
+                <?= Html::activeLabel($model, 'email', ['for' => 'email', 'class' => 'col-sm-3 control-label']); ?>
+                <div class="col-sm-9">
+                    <?= Html::activeTextInput($model, 'email', ['class' =>  'form-control', 'id' => 'email', 'placeholder' => 'Email']); ?>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="message">Din besked:</label>
-            <div class="col-sm-9">
-                <textarea class="form-control" rows="3" cols="25" class="message"></textarea>
+            <div class="form-group">
+                <?= Html::activeLabel($model, 'message', ['for' => 'message', 'class' => 'col-sm-3 control-label']); ?>
+                <div class="col-sm-9">
+                    <?= Html::activeTextarea($model, 'message', ['class' => 'form-control', 'id' => 'message', 'placeholder' => '', 'rows' => "3", 'cols' => '25']); ?>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-10">
-                <button class="btn btn-primary" type="submit">Send besked</button>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-10">
+                    <?= Html::submitInput('Send besked', ['class' =>  'btn btn-primary']); ?>
+                </div>
             </div>
-        </div>
-    </form>
+        <?= Html::endForm(); ?>
 </div>

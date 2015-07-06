@@ -8230,6 +8230,78 @@ dl dd {
   margin: 15px 0;
 }
 
+.error-summary {
+  border: 2px solid #C00;
+  padding: 7px 7px 12px 7px;
+  margin: 0 0 20px 0;
+  background: #FEE;
+  font-size: 0.9em;
+}
+.error-summary p {
+  margin: 0;
+  padding: 5px;
+}
+.error-summary ul {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+
+@media only screen and (max-width: 1100px), only screen and (max-device-width: 1100px) {
+  #nav > ul > li {
+    margin-left: 5px;
+  }
+}
+@media only screen and (max-width: 1000px), only screen and (max-device-width: 1000px) {
+  #nav {
+    font-size: 14px;
+  }
+
+  #nav > ul ul {
+    top: 32px;
+  }
+}
+@media only screen and (max-width: 900px), only screen and (max-device-width: 900px) {
+  .header-top .logo {
+    display: none;
+  }
+
+  #header {
+    padding: 60px 0 0;
+  }
+
+  .header-top-banner {
+    width: 100%;
+    height: auto;
+  }
+}
+@media only screen and (max-width: 1100px), only screen and (max-device-width: 1100px) {
+  #nav > ul > li {
+    margin-left: 5px;
+  }
+}
+@media only screen and (max-width: 1000px), only screen and (max-device-width: 1000px) {
+  #nav {
+    font-size: 14px;
+  }
+
+  #nav > ul ul {
+    top: 32px;
+  }
+}
+@media only screen and (max-width: 900px), only screen and (max-device-width: 900px) {
+  .header-top .logo {
+    display: none;
+  }
+
+  #header {
+    padding: 60px 0 0;
+  }
+
+  .header-top-banner {
+    width: 100%;
+    height: auto;
+  }
+}
 @media only screen and (max-width: 1100px), only screen and (max-device-width: 1100px) {
   #nav > ul > li {
     margin-left: 5px;

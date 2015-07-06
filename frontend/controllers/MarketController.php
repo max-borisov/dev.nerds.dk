@@ -2,12 +2,11 @@
 
 namespace frontend\controllers;
 
-use frontend\components\HelperBase;
-
 use Yii;
 use yii\data\Pagination;
 use frontend\models\Item;
 use frontend\models\TopCategory;
+use frontend\models\ItemUserAdv;
 
 class MarketController extends AppController
 {
@@ -43,6 +42,18 @@ class MarketController extends AppController
         if (!$item) {
             $this->redirect('/market');
         }
-        return $this->render('view', ['item' => $item]);
+        $request = Yii::$app->request;
+        $itemUserAdv = new ItemUserAdv();
+        $itemUserAdv->item_id = $request->get('id');
+        if ($request->isPost && $itemUserAdv->load($request->post()) && $itemUserAdv->validate()) {
+            $itemUserAdv->save(false);
+            Yii::$app->session->setFlash('item_user_adv_success', 'Your message has been saved', true);
+            return $this->refresh();
+        }
+
+        return $this->render('view', [
+            'item' => $item,
+            'itemUserAdv' => $itemUserAdv,
+        ]);
     }
 }

@@ -4,7 +4,6 @@ namespace console\controllers;
 
 use Yii;
 use yii\console\Controller;
-use frontend\models\Item;
 use frontend\models\ExternalSite;
 use frontend\components\HelperBase;
 use yii\console\Exception;
