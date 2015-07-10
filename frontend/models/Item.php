@@ -214,6 +214,10 @@ class Item extends ActiveRecord
 
     public function afterFind()
     {
+        if (($pos = strpos($this->preview, '?') !== false)) {
+            $this->preview = substr($this->preview, 0, $pos);
+        }
+
         // Set preview for each item
         // Default(blank) preview
 //        $this->preview = Yii::$app->imagePlaceholder->get('100x55');
