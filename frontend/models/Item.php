@@ -214,7 +214,7 @@ class Item extends ActiveRecord
 
     public function afterFind()
     {
-        if (($pos = strpos($this->preview, '?') !== false)) {
+        if (($pos = strpos($this->preview, '?')) !== false) {
             $this->preview = substr($this->preview, 0, $pos);
         }
 
