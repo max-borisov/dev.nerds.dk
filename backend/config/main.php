@@ -10,6 +10,7 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
+    'defaultRoute'        => 'category/index',
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
@@ -29,6 +30,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'urlManager' => require(__DIR__ . '/routes.php'),
     ],
     'params' => $params,
 ];
